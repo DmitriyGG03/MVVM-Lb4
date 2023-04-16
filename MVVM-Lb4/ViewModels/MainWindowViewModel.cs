@@ -6,7 +6,7 @@ internal class MainWindowViewModel : ViewModel
 {
     #region Title
     
-    private string _title;
+    private string _title = "University Group Manager";
 
     /// <summary>Window title</summary>
     public string Title { get => _title;

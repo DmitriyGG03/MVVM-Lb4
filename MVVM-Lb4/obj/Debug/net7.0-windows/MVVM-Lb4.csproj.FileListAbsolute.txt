@@ -61,3 +61,4 @@ C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-w
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\ref\MVVM-Lb4.dll
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\Windows\MainWindow.g.cs
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\Windows\MainWindow.baml
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
