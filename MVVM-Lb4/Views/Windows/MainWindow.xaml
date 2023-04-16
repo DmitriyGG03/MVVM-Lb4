@@ -11,13 +11,35 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
-    <Grid>
-        <TextBox HorizontalAlignment="Left" 
-                 Margin="28,28,0,0" 
-                 TextWrapping="Wrap" 
-                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" 
-                 VerticalAlignment="Top" 
-                 Width="177" 
-                 Height="26"/>
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About program"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom"></StatusBar>
+        <TabControl>
+            <TabItem Header="Tab1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" Grid.Row="0"
+                               Margin="10,5,10,5"
+                               Fill="Green" Stroke="Red"
+                               StrokeThickness="3"
+                               RadiusX="30" RadiusY="50"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tab2"></TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>
