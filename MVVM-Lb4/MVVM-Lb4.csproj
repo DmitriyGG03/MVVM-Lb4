@@ -14,11 +14,18 @@
       <Folder Include="Models" />
       <Folder Include="Services" />
       <Folder Include="ViewModels" />
-      <Folder Include="Views" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Views\Windows\MainWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
 </Project>

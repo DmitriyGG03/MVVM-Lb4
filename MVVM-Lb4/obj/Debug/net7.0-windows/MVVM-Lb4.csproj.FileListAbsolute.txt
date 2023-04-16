@@ -45,11 +45,9 @@ C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-w
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4.csproj.AssemblyReference.cache
-C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MainWindow.g.cs
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\App.g.cs
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4_MarkupCompile.cache
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4_MarkupCompile.lref
-C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MainWindow.baml
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4.g.resources
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4.AssemblyInfoInputs.cache
@@ -61,3 +59,5 @@ C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-w
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4.pdb
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\MVVM-Lb4.genruntimeconfig.cache
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\ref\MVVM-Lb4.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\Windows\MainWindow.g.cs
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\Windows\MainWindow.baml
