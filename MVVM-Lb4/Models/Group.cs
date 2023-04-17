@@ -11,7 +11,7 @@ public class Group : INotifyPropertyChanged
 	#region Parameters
 
 	private string _groupName;
-    private ObservableCollection<Student>? _students;
+    private ICollection<Student>? _students;
 
 	public int GroupId { get; set; }
 
@@ -30,7 +30,7 @@ public class Group : INotifyPropertyChanged
         } 
     }
 
-    public ObservableCollection<Student>? Students
+    public ICollection<Student>? Students
     {
         get => _students;
         private set
@@ -44,7 +44,7 @@ public class Group : INotifyPropertyChanged
 
 	#endregion Parameters
 
-	public Group(string groupName, ObservableCollection<Student>? students = null)
+	public Group(string groupName, ICollection<Student>? students = null)
     {
         GroupFullName = groupName;        
         Students = students;

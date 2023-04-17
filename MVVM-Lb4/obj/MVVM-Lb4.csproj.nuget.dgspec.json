@@ -44,6 +44,18 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "dependencies": {
+            "FontAwesome6.Fonts": {
+              "target": "Package",
+              "version": "[2.5.1, )"
+            },
+            "FontAwesome6.Svg": {
+              "target": "Package",
+              "version": "[2.5.1, )"
+            },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.5, )"

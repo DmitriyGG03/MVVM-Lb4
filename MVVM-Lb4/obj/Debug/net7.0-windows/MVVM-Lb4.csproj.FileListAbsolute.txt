@@ -62,3 +62,12 @@ C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-w
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\Windows\MainWindow.g.cs
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\Windows\MainWindow.baml
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\FontAwesome6.Core.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\FontAwesome6.Fonts.Net.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\FontAwesome6.Shared.Net.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\FontAwesome6.Svg.Net.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\MaterialDesignColors.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\MaterialDesignThemes.Wpf.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\App.baml

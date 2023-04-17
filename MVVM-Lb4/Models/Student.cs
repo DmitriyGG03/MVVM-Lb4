@@ -10,6 +10,7 @@ public class Student : INotifyPropertyChanged
 
 	private string _name;
 	private string _lastName;
+	private string _patronymic;
 	private byte _courseNumber;
 
 	public int StudentId { get; set; }
@@ -21,7 +22,7 @@ public class Student : INotifyPropertyChanged
 		{
 			if (value is null) throw new ArgumentNullException();
 
-			if (value.Length < 3 || value.Length > 20) throw new ArgumentException();
+			if (value.Length < 3 || value.Length > 30) throw new ArgumentException();
 
 			_name = value;
 		}
@@ -33,9 +34,22 @@ public class Student : INotifyPropertyChanged
 		{
 			if (value is null) throw new ArgumentNullException();
 
-			if (value.Length < 3 || value.Length > 20) throw new ArgumentException();
+			if (value.Length < 3 || value.Length > 30) throw new ArgumentException();
 
 			_lastName = value;
+		}
+	}
+	
+	public string Patronymic
+	{
+		get => _patronymic;
+		private set
+		{
+			if (value is null) throw new ArgumentNullException();
+
+			if (value.Length < 3 || value.Length > 30) throw new ArgumentException();
+
+			_patronymic = value;
 		}
 	}
 
@@ -51,17 +65,18 @@ public class Student : INotifyPropertyChanged
 	}
 
 
-	public int GroupId { get; private set; }
+	public int? GroupId { get; private set; }
 	public Group? Group { get; private set; }
 
 	#endregion Parameters
 
-	public Student(string name, string lastName, byte course, Group group)
+	public Student(string name, string lastName, string patronymic, byte course, Group group = null)
 	{
 		if (name == null || lastName == null) throw new ArgumentNullException();
 
 		Name = name;
 		LastName = lastName;
+		Patronymic = patronymic;
 		CourseNumber = course;
 		Group = group;
 	}

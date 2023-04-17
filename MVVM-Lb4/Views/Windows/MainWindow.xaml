@@ -3,11 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:faf="http://schemas.fontawesome.com/icons/fonts"
+        xmlns:fas="http://schemas.fontawesome.com/icons/svg"
         xmlns:cmd="clr-namespace:MVVM_Lb4.Infrastructure.Commands"
         xmlns:vm="clr-namespace:MVVM_Lb4.ViewModels"
         xmlns:l="clr-namespace:MVVM_Lb4"
         Title="{Binding Title}" 
-        Height="450" Width="800">
+        Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -16,35 +19,56 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Exit">
+                    <MenuItem.Icon>
+                        <fas:ImageAwesome Icon="Solid_DoorOpen" Margin="5,0,0,0"/>
+                    </MenuItem.Icon>
                     <MenuItem.Command>
                         <cmd:CloseApplicationCommand/>
                     </MenuItem.Command>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Help">
-                <MenuItem Header="About program"/>
+                <MenuItem Header="About program">
+                    <MenuItem.Icon>
+                        <faf:ImageAwesome Icon="Solid_Info" Margin="10,0,0,0"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
-        <TabControl>
-            <TabItem Header="Tab1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Rectangle Grid.Column="0" Grid.Row="0"
-                               Margin="10,5,10,5"
-                               Fill="Green" Stroke="Red"
-                               StrokeThickness="3"
-                               RadiusX="30" RadiusY="50"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Tab2"></TabItem>
-        </TabControl>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0"
+                    Margin="0,5,0,0" 
+                    Content="Add group" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" 
+                    MinWidth="10" MaxWidth = "600" Height="36"/>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,5,0,0" 
+                    Content="Add student" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" 
+                    MinWidth="10" MaxWidth = "600" Height="36"/>
+            <GroupBox Header="Groups" Margin="5,5,5,5" Grid.Row="1">
+                <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="GroupFullName"/>
+            </GroupBox>
+            <GroupBox Header="Students" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1">
+                <DataGrid ItemsSource="{Binding Groups}"/>
+            </GroupBox>
+            <GridSplitter Grid.Column="0"
+                          Grid.RowSpan="2"
+                          HorizontalAlignment="Right"
+                          Width="2"/>
+        </Grid>
     </DockPanel>
 </Window>
