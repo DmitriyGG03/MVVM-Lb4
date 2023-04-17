@@ -64,9 +64,17 @@
                          DisplayMemberPath="GroupFullName" 
                          SelectedItem="{Binding SelectedGroup}"/>
             </GroupBox>
-            <GroupBox Header="{Binding SelectedGroup.GroupFullName, StringFormat=Students of the {0} group, FallbackValue='Students', TargetNullValue= 'Group not selected'}"
+            <GroupBox Header="{Binding SelectedGroup.GroupFullName, FallbackValue='Students', TargetNullValue= 'Group not selected'}"
                       Margin="5,5,5,5" Grid.Row="1" Grid.Column="1">
-                <DataGrid ItemsSource="{Binding Groups}"/>
+                <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="last name" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
+                        <DataGridTextColumn Header="Course number" Binding="{Binding CourseNumber}"/>
+                    </DataGrid.Columns>                    
+                </DataGrid>
             </GroupBox>
             <GridSplitter Grid.Column="0"
                           Grid.RowSpan="2"

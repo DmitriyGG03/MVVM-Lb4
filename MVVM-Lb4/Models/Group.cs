@@ -19,7 +19,7 @@ public class Group : INotifyPropertyChanged
     {
         get => _groupName;
 
-		private set
+		set
         {
             if (value is null) throw new ArgumentNullException();
 
@@ -33,7 +33,7 @@ public class Group : INotifyPropertyChanged
     public ICollection<Student>? Students
     {
         get => _students;
-        private set
+        set
         {
             if (_students is not null && _students.Count >= 35)
                 throw new InvalidOperationException();

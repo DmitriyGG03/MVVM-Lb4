@@ -18,7 +18,7 @@ public class Student : INotifyPropertyChanged
 	public string Name
 	{
 		get => _name;
-		private set
+		set
 		{
 			if (value is null) throw new ArgumentNullException();
 
@@ -30,7 +30,7 @@ public class Student : INotifyPropertyChanged
 	public string LastName
 	{
 		get => _lastName;
-		private set
+		set
 		{
 			if (value is null) throw new ArgumentNullException();
 
@@ -43,7 +43,7 @@ public class Student : INotifyPropertyChanged
 	public string Patronymic
 	{
 		get => _patronymic;
-		private set
+		set
 		{
 			if (value is null) throw new ArgumentNullException();
 
@@ -56,7 +56,7 @@ public class Student : INotifyPropertyChanged
 	public byte CourseNumber
 	{
 		get => _courseNumber;
-		private set
+		set
 		{
 			if (value < 1 || value > 6) throw new ArgumentException();
 
