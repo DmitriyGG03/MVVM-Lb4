@@ -30,6 +30,14 @@ internal class MainWindowViewModel : ViewModel
 
     #endregion Students
 
+    #region SelectedGroup
+
+    private Group _selectedGroup;
+
+    public Group SelectedGroup { get => _selectedGroup; set => Set(ref _selectedGroup, value); }
+
+	#endregion SelectedGroup
+
 	#endregion Parameters
 
 	#region Commands

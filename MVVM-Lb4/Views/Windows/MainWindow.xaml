@@ -16,9 +16,9 @@
     </Window.DataContext>
 
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="Exit">
+        <Menu DockPanel.Dock="Top" Height="20">
+            <MenuItem Header="File" Height="20">
+                <MenuItem Header="Exit" Height="20" Margin="-15,-20,-5,-20">
                     <MenuItem.Icon>
                         <fas:ImageAwesome Icon="Solid_DoorOpen" Margin="5,0,0,0"/>
                     </MenuItem.Icon>
@@ -27,8 +27,8 @@
                     </MenuItem.Command>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="About program">
+            <MenuItem Header="Help" Height="20">
+                <MenuItem Header="About program" Height="20" Margin="-15,-20,-5,-20">
                     <MenuItem.Icon>
                         <faf:ImageAwesome Icon="Solid_Info" Margin="10,0,0,0"/>
                     </MenuItem.Icon>
@@ -43,8 +43,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0"
                     Margin="0,5,0,0" 
@@ -60,9 +60,12 @@
                     VerticalAlignment="Top" 
                     MinWidth="10" MaxWidth = "600" Height="36"/>
             <GroupBox Header="Groups" Margin="5,5,5,5" Grid.Row="1">
-                <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="GroupFullName"/>
+                <ListBox ItemsSource="{Binding Groups}" 
+                         DisplayMemberPath="GroupFullName" 
+                         SelectedItem="{Binding SelectedGroup}"/>
             </GroupBox>
-            <GroupBox Header="Students" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1">
+            <GroupBox Header="{Binding SelectedGroup.GroupFullName, StringFormat=Students of the {0} group, FallbackValue='Students', TargetNullValue= 'Group not selected'}"
+                      Margin="5,5,5,5" Grid.Row="1" Grid.Column="1">
                 <DataGrid ItemsSource="{Binding Groups}"/>
             </GroupBox>
             <GridSplitter Grid.Column="0"
