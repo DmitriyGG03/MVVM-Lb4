@@ -65,14 +65,14 @@ public class Student : INotifyPropertyChanged
 	}
 
 
-	public int? GroupId { get; private set; }
+	public int GroupId { get; private set; }
 	public Group? Group { get; private set; }
 
 	#endregion Parameters
 
-	public Student(string name, string lastName, string patronymic, byte course, Group group = null)
+	public Student(string name, string lastName, string patronymic, byte course, Group group)
 	{
-		if (name == null || lastName == null) throw new ArgumentNullException();
+		if (name is null || lastName is null || patronymic is null) throw new ArgumentNullException();
 
 		Name = name;
 		LastName = lastName;
@@ -80,6 +80,9 @@ public class Student : INotifyPropertyChanged
 		CourseNumber = course;
 		Group = group;
 	}
+
+	public Student()
+	{ }
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 	public void OnPropertyChanged([CallerMemberName] string prop = "")

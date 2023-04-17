@@ -51,7 +51,8 @@
                     Content="Add group" 
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top" 
-                    MinWidth="10" MaxWidth = "600" Height="36"/>
+                    MinWidth="10" MaxWidth = "600" Height="36"
+                    Command="{Binding AddGroupCommmand}"/>
             <Button Grid.Row="0"
                     Grid.Column="1"
                     Margin="0,5,0,0" 
