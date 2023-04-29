@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace MVVM_Lb4.ViewModels.Base;
 
-internal abstract class ViewModel : INotifyPropertyChanged, IDisposable
+public abstract class ViewModel : INotifyPropertyChanged, IDisposable
 {
     protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
     {

@@ -1,17 +1,13 @@
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using MVVM_Lb4.Infrastructure;
+using MVVM_Lb4.Domain.Models;
+using MVVM_Lb4.EF;
 using MVVM_Lb4.Infrastructure.Commands;
 using MVVM_Lb4.ViewModels.Base;
 using MVVM_Lb4.Views.DialogWindows;
-using Newtonsoft.Json.Linq;
-using UniversityLb4.Model;
 
 namespace MVVM_Lb4.ViewModels;
 

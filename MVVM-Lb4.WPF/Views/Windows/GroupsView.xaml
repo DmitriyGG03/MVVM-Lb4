@@ -1,0 +1,120 @@
+<UserControl x:Class="MVVM_Lb4.Views.Windows.GroupsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:components="clr-namespace:MVVM-Lb4.WPF.Components"
+             xmlns:local="clr-namespace:MVVM_Lb4.Views.Windows"
+             xmlns:components1="clr-namespace:MVVM-Lb4.WPF.Components"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoading}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+
+            <!-- <custom:LoadingSpinner -->
+            <!--     Diameter="100" -->
+            <!--     IsLoading="True" -->
+            <!--     Thickness="3" /> -->
+
+            <TextBlock
+                Margin="0,10,0,0"
+                Text="Loading Groups..."
+                TextAlignment="Center" />
+        </StackPanel>
+
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoading}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasErrorMessage}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ErrorMessage}"
+                    Text="{Binding ErrorMessage}"
+                    TextAlignment="Center" />
+            </Grid>
+
+            <Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasErrorMessage}" Value="False">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    AutomationProperties.AutomationId="CreateNewGroupButton"
+                    Command="{Binding AddYouTubeViewersCommand}"
+                    Content="Create a new group"
+                    FontSize="16" />
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    AutomationProperties.AutomationId="AddStudentButton"
+                    Command="{Binding AddStudentCommand}"
+                    IsEnabled="true"
+                    Content="Add student into the group"
+                    FontSize="16" />
+                <!-- Add binding to IsEnabled field in the button -->
+
+                <components:GroupsListing
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    DataContext="{Binding GroupsListingViewModel}" />
+
+                <components:GroupsStudents
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    DataContext="{Binding GroupsStudentsViewModel}" />
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

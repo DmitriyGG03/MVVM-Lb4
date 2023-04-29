@@ -9,25 +9,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Data" />
-      <Folder Include="Models" />
-      <Folder Include="Services" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="DropdownMenu.WPF" Version="1.0.0" />
       <PackageReference Include="FontAwesome6.Fonts" Version="2.5.1" />
       <PackageReference Include="FontAwesome6.Svg" Version="2.5.1" />
       <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Views\Windows\MainWindow.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
+      <ProjectReference Include="..\MVVM-Lb4.Domain\MVVM-Lb4.Domain.csproj" />
+      <ProjectReference Include="..\MVVM_Lb4.EF\MVVM_Lb4.EF.csproj" />
     </ItemGroup>
 
 </Project>
