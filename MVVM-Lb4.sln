@@ -1,6 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM-Lb4", "MVVM-Lb4\MVVM-Lb4.csproj", "{1D2BB297-C68F-48FB-BD2A-497743F3685E}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVM-Lb4.WPF", "MVVM-Lb4.WPF\MVVM-Lb4.WPF.csproj", "{1D2BB297-C68F-48FB-BD2A-497743F3685E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVM-Lb4.Domain", "MVVM-Lb4.Domain\MVVM-Lb4.Domain.csproj", "{1050FADF-A3FD-46EA-8D07-0FD1ED88386B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM_Lb4.EF", "MVVM_Lb4.EF\MVVM_Lb4.EF.csproj", "{1664890C-D804-4958-AED4-8B69C16255E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +19,16 @@ Global
 		{1D2BB297-C68F-48FB-BD2A-497743F3685E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D2BB297-C68F-48FB-BD2A-497743F3685E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D2BB297-C68F-48FB-BD2A-497743F3685E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1050FADF-A3FD-46EA-8D07-0FD1ED88386B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1050FADF-A3FD-46EA-8D07-0FD1ED88386B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1050FADF-A3FD-46EA-8D07-0FD1ED88386B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1050FADF-A3FD-46EA-8D07-0FD1ED88386B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1664890C-D804-4958-AED4-8B69C16255E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1664890C-D804-4958-AED4-8B69C16255E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1664890C-D804-4958-AED4-8B69C16255E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1664890C-D804-4958-AED4-8B69C16255E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
