@@ -73,3 +73,6 @@ C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-w
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\App.baml
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\DialogWindows\AddGroupWindow.g.cs
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\DialogWindows\AddGroupWindow.baml
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\DialogWindows\AddStudentWindow.g.cs
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\obj\Debug\net7.0-windows\Views\DialogWindows\AddStudentWindow.baml
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\bin\Debug\net7.0-windows\DropdownMenuControl.dll

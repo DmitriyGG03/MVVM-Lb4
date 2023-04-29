@@ -7,7 +7,7 @@
         xmlns:fas="http://schemas.fontawesome.com/icons/svg"
         xmlns:cmd="clr-namespace:MVVM_Lb4.Infrastructure.Commands"
         xmlns:vm="clr-namespace:MVVM_Lb4.ViewModels"
-        xmlns:l="clr-namespace:MVVM_Lb4"
+        xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl"
         Title="{Binding Title}" 
         Height="600" Width="800" WindowStartupLocation="CenterScreen">
         
@@ -53,27 +53,83 @@
                     VerticalAlignment="Top" 
                     MinWidth="10" MaxWidth = "600" Height="36"
                     Command="{Binding AddGroupCommmand}"/>
-            <Button Grid.Row="0"
+            <Button 
+                    IsEnabled="{Binding GroupIsSelected, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Row="0"
                     Grid.Column="1"
                     Margin="0,5,0,0" 
                     Content="Add student" 
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top" 
-                    MinWidth="10" MaxWidth = "600" Height="36"/>
+                    MinWidth="10" MaxWidth = "600" Height="36"
+                    Command="{Binding AddStudentCommmand}"/>
             <GroupBox Header="Groups" Margin="5,5,5,5" Grid.Row="1">
-                <ListBox ItemsSource="{Binding Groups}" 
-                         DisplayMemberPath="GroupFullName" 
-                         SelectedItem="{Binding SelectedGroup}"/>
+                <ListView BorderThickness="0"
+                          ItemsSource="{Binding GroupsView}"
+                          SelectedItem="{Binding SelectedGroup}"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding GroupFullName}"/>
+
+                                <custom:DropdownMenu Grid.Column="1" Margin="10 0 0 0">
+                                    <Border
+                                        Background="White"
+                                        BorderBrush="Gray"
+                                        BorderThickness="1">
+                                        <StackPanel>
+                                            <StackPanel.Resources>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="Gray"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                                                        To="#c7c7c7"
+                                                                                        Duration="0:0:0.1"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                                                        To="#c7c7c7"
+                                                                                        Duration="0:0:0.1"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Resources>
+                                        </StackPanel>
+                                    </Border>
+                                </custom:DropdownMenu>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </GroupBox>
             <GroupBox Header="{Binding SelectedGroup.GroupFullName, FallbackValue='Students', TargetNullValue= 'Group not selected'}"
                       Margin="5,5,5,5" Grid.Row="1" Grid.Column="1">
-                <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
-                          AutoGenerateColumns="False">
+                <DataGrid ItemsSource="{Binding SelectedGroup.Students, Mode=TwoWay}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="false">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="last name" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
-                        <DataGridTextColumn Header="Course number" Binding="{Binding CourseNumber}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="last name" Binding="{Binding LastName, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Course number" Binding="{Binding CourseNumber, Mode=TwoWay}"/>
                     </DataGrid.Columns>                    
                 </DataGrid>
             </GroupBox>

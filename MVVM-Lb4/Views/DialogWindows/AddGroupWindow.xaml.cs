@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_Lb4.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,10 +17,13 @@ namespace MVVM_Lb4.Views.DialogWindows
 {
     public partial class AddGroupWindow : Window
     {
-        public AddGroupWindow()
+		internal AddGroupWindow(MainWindowViewModel mainWindowViewModel)
         {
+            //Add MainWindowsViewModel object into constructor in order to do not create new and use already existed instead
             InitializeComponent();
-        }
+
+            DataContext = mainWindowViewModel;
+		}
 
 		/// <summary>Set success result for dialog window</summary>
 		private void Accept_Click(object sender, RoutedEventArgs e) // Of course, better way is to create a new command, but this way is easier

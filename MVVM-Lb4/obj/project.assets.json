@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net7.0-windows7.0": {
+      "DropdownMenu.WPF/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/DropdownMenuControl.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/DropdownMenuControl.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "FontAwesome6.Fonts/2.5.1": {
         "type": "package",
         "compile": {
@@ -596,6 +608,18 @@
     }
   },
   "libraries": {
+    "DropdownMenu.WPF/1.0.0": {
+      "sha512": "7S90a70go9Cko9y5Ugs3YEev+EboKs8uicIw5clxa2uTho+/pAHAx7NRq0HbAsVAKAobAqL9goAlI/elRbNsxA==",
+      "type": "package",
+      "path": "dropdownmenu.wpf/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dropdownmenu.wpf.1.0.0.nupkg.sha512",
+        "dropdownmenu.wpf.nuspec",
+        "lib/netcoreapp3.1/DropdownMenuControl.dll"
+      ]
+    },
     "FontAwesome6.Fonts/2.5.1": {
       "sha512": "BeRw9lieLM2GqAvHTmU/pF0MDBuC+KiXnFVsFdmFkyaqO1N6t9/3gNkOsn572zM/zuWRvn2RhJzCoTDiV+4T7Q==",
       "type": "package",
@@ -1441,6 +1465,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
+      "DropdownMenu.WPF >= 1.0.0",
       "FontAwesome6.Fonts >= 2.5.1",
       "FontAwesome6.Svg >= 2.5.1",
       "MaterialDesignThemes >= 4.8.0",
@@ -1491,6 +1516,10 @@
       "net7.0-windows7.0": {
         "targetAlias": "net7.0-windows",
         "dependencies": {
+          "DropdownMenu.WPF": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "FontAwesome6.Fonts": {
             "target": "Package",
             "version": "[2.5.1, )"

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4\App.xaml
-254981891
+3-884455236
 
-131619081546
-224-326853891
-Views\DialogWindows\AddGroupWindow.xaml;Views\Windows\MainWindow.xaml;
+141210986551
+225-1350654153
+Views\DialogWindows\AddGroupWindow.xaml;Views\DialogWindows\AddStudentWindow.xaml;Views\Windows\MainWindow.xaml;
 
 True
 

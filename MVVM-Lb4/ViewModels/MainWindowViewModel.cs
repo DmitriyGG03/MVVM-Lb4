@@ -1,9 +1,11 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MVVM_Lb4.Infrastructure;
 using MVVM_Lb4.Infrastructure.Commands;
 using MVVM_Lb4.ViewModels.Base;
@@ -21,22 +23,24 @@ internal class MainWindowViewModel : ViewModel
 
 	private string _title = "University Group Manager";
 
-    /// <summary>Window title</summary>
-    public string Title { get => _title;
-        set => Set(ref _title, value);
-    }
+	/// <summary>Window title</summary>
+	public string Title
+	{
+		get => _title;
+		set => Set(ref _title, value);
+	}
 
 	#endregion Title
 
 	#region Students
 
-    public ObservableCollection<Group> Groups { get; }
+	public ObservableCollection<Group> GroupsView { get; }
 
 	#endregion Students
 
 	#region DbContext
 
-    ApplicationDbContext DbContext = new ApplicationDbContext();
+	ApplicationDbContext DbContext = new ApplicationDbContext();
 
 	#endregion
 
@@ -44,7 +48,17 @@ internal class MainWindowViewModel : ViewModel
 
 	private Group _selectedGroup;
 
-    public Group SelectedGroup { get => _selectedGroup; set => Set(ref _selectedGroup, value); }
+	public Group SelectedGroup 
+	{ 
+		get => _selectedGroup;
+		set
+		{
+			Set(ref _selectedGroup, value);
+			OnPropertyChanged(nameof(GroupIsSelected));
+		}
+	}
+
+	public bool GroupIsSelected => SelectedGroup is not null;
 
 	#endregion SelectedGroup
 
@@ -56,12 +70,12 @@ internal class MainWindowViewModel : ViewModel
 
 	public ICommand CloseApplicationCommand { get; }
 
-    private void OnCloseApplicationCommandExecuted(object p)
-    {
-        Application.Current.Shutdown();
-    }
+	private void OnCloseApplicationCommandExecuted(object p)
+	{
+		Application.Current.Shutdown();
+	}
 
-    private bool CanCloseApplicationCommandExecute(object p) => true;
+	private bool CanCloseApplicationCommandExecute(object p) => true;
 
 	#endregion CloseApp
 
@@ -72,14 +86,14 @@ internal class MainWindowViewModel : ViewModel
 
 	private void OnAddGroupCommmandExecuted(object p)
 	{
-		AddGroupWindow addGroupWindow = new AddGroupWindow();
+		AddGroupWindow addGroupWindow = new AddGroupWindow(this);
 
 		var groups = DbContext.Groups;
 
 
 		if ((bool)addGroupWindow.ShowDialog()!)
 		{
-			if (!ValidateSyntaxEnteredGroupName()) return;
+			if (!ValidateStringSyntaxEnteredData(EnteredGroupName, "Group name")) return;
 
 			if (groups.Any(g => g.GroupFullName.Equals(EnteredGroupName)))
 			{
@@ -99,39 +113,87 @@ internal class MainWindowViewModel : ViewModel
 		}
 	}
 
-	private bool ValidateSyntaxEnteredGroupName()
-	{
-		if (EnteredGroupName is null)
-		{
-			MessageBox.Show("You must enter data");
-			return false;
-		}
-		else if (EnteredGroupName.Length < 3 ||
-			EnteredGroupName.Length > 15)
-		{
-			MessageBox.Show("Group name must have minimum 3 symbols and maximum 30");
-			return false;
-		}
-		else return true;		
-	}
-
 	public string EnteredGroupName { get => _enteredGroupName; set => Set(ref _enteredGroupName, value); }
 
 	private bool CanAddGroupCommmandExecute(object p) => true;
 
 	#endregion AddGroup
 
+	#region AddStudent
+
+	public ICommand AddStudentCommmand { get; }
+	private string _enteredStudentName;
+	private string _enteredStudentSurname;
+	private string _enteredStudentPatronymic;
+	private string _enteredStudentCourse;
+
+	private void OnAddStudentCommmandExecuted(object p)
+	{
+		AddStudentWindow addStudentWindow = new AddStudentWindow(this);
+
+		var students = SelectedGroup.Students;
+
+		if ((bool)addStudentWindow.ShowDialog()!)
+		{
+
+			if (!ValidateStringSyntaxEnteredData(EnteredStudentName, "Student name")) return;
+			if (!ValidateStringSyntaxEnteredData(EnteredStudentSurname, "Student surname")) return;
+			if (!ValidateStringSyntaxEnteredData(EnteredStudentPatronymic, "Student patronymic")) return;
+
+			DbContext.Students.Add(new Student(EnteredStudentName,
+											   EnteredStudentSurname, 
+											   EnteredStudentPatronymic, 
+											   byte.Parse(EnteredStudentCourse),
+											   SelectedGroup));
+			DbContext.SaveChanges();
+
+			MessageBox.Show($"A group called {EnteredGroupName} has been successfully created");
+
+		}
+		else
+		{
+			MessageBox.Show("You must enter data in order to create a new group!");
+		}
+	}
+
+	private bool ValidateStringSyntaxEnteredData(string data, string paramName)
+	{
+		if (data is null)
+		{
+			MessageBox.Show("You must enter data");
+			return false;
+		}
+		else if (data.Length < 3 || data.Length > 15)
+		{
+			MessageBox.Show($"{paramName} must have minimum 3 symbols and maximum 30");
+			return false;
+		}
+		else return true;
+	}
+
+	public string EnteredStudentName { get => _enteredStudentName; set => Set(ref _enteredStudentName, value); }
+	public string EnteredStudentSurname { get => _enteredStudentSurname; set => Set(ref _enteredStudentSurname, value); }
+	public string EnteredStudentPatronymic { get => _enteredStudentPatronymic; set => Set(ref _enteredStudentPatronymic, value); }
+	public string EnteredStudentCourse { get => _enteredStudentCourse; set => Set(ref _enteredStudentCourse, value); }
+
+	private bool CanAddStudentCommmandExecute(object p) => true;
+
+	#endregion AddStudent
+
 	#endregion Commands
 
 	public MainWindowViewModel()
-    {
-        #region Commands
-        
-        CloseApplicationCommand =
-            new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+	{
+		#region Commands
 
-		AddGroupCommmand = 
+		CloseApplicationCommand =
+			new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+
+		AddGroupCommmand =
 			new LambdaCommand(OnAddGroupCommmandExecuted, CanAddGroupCommmandExecute);
+
+		AddStudentCommmand =
+			new LambdaCommand(OnAddStudentCommmandExecuted, CanAddStudentCommmandExecute);
 
 
 		#endregion Commands
@@ -139,7 +201,7 @@ internal class MainWindowViewModel : ViewModel
 		DbContext.Database.EnsureCreated();
 		DbContext.Groups.Load();
 		DbContext.Students.Load();
-		Groups = DbContext.Groups.Local.ToObservableCollection();
+		GroupsView = DbContext.Groups.Local.ToObservableCollection();
 
 		//Groups = TestGroupGeneration();
 

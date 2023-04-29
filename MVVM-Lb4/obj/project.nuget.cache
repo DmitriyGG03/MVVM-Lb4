@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+YMeW7ewyOmxezsoO4AYNgApqpxJwUvPq4lscX0VK54swYLwrIHgzlGgAzOpnEc/7V+6EvXUr2pwoHC23bI2gQ==",
+  "dgSpecHash": "gvd6TE/35IY75vz7St88bRJdLh8Qt96pxdKEnANcEl1tAU5wgCR4clS2DX2nFaLMyCOHJc50kgMPJr5m8R2R0Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\MVVM-Lb4\\MVVM-Lb4\\MVVM-Lb4.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dimchik\\.nuget\\packages\\dropdownmenu.wpf\\1.0.0\\dropdownmenu.wpf.1.0.0.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\fontawesome6.fonts\\2.5.1\\fontawesome6.fonts.2.5.1.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\fontawesome6.svg\\2.5.1\\fontawesome6.svg.2.5.1.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\materialdesigncolors\\2.1.2\\materialdesigncolors.2.1.2.nupkg.sha512",
