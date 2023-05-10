@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MVVM_Lb4.Domain.AbstractQueries;
 using MVVM_Lb4.Domain.Models;
+using MVVM_Lb4.EF.DTOs;
 
 namespace MVVM_Lb4.EF.Queries;
 
@@ -13,11 +14,18 @@ public class GetAllGroupsQuery : IGetCollectionQuery<Group>
         _contextFactory = contextFactory;
     }
 
-    public async Task<IEnumerable<Group>> Execute()
+    public async Task<List<Group>> Execute(object? param = null)
     {
         using (ApplicationDbContext context = _contextFactory.Create())
         {
-            return await context.Groups.ToListAsync();
+            IList<GroupDbSaveObject> groups = context.Groups.ToList();
+            
+            return groups.Select(g => new Group()
+            {
+                GroupId = g.GroupId,
+                GroupName = g.GroupName,
+                Students = null
+            }).ToList();
         }
     }
 }

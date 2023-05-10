@@ -6,9 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using MVVM_Lb4.Commands;
+using MVVM_Lb4.Domain.AbstractQueries;
 using MVVM_Lb4.Domain.Models;
+using MVVM_Lb4.EF;
+using MVVM_Lb4.EF.Queries;
+using MVVM_Lb4.Stores;
+using MVVM_Lb4.ViewModels;
+using MVVM_Lb4.Views.DialogWindows;
+using MVVM_Lb4.Views.Windows.Main;
 using YouTubeViewers.WPF.HostBuilders;
 
 namespace MVVM_Lb4
@@ -26,21 +36,17 @@ namespace MVVM_Lb4
                 .AddDbContext()
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddSingleton<IGetAllYouTubeViewersQuery, GetAllYouTubeViewersQuery>();
-                    services.AddSingleton<ICreateYouTubeViewerCommand, CreateYouTubeViewerCommand>();
-                    services.AddSingleton<IUpdateYouTubeViewerCommand, UpdateYouTubeViewerCommand>();
-                    services.AddSingleton<IDeleteYouTubeViewerCommand, DeleteYouTubeViewerCommand>();
+                    services.AddSingleton<GroupsStore>();
+                    
+                    services.AddSingleton<IGetCollectionQuery<Group>, GetAllGroupsQuery>();
+                    services.AddSingleton<IGetCollectionQuery<Student>, GetAllStudentsInGroupQuery>();
 
-                    services.AddSingleton<ModalNavigationStore>();
-                    services.AddSingleton<YouTubeViewersStore>();
-                    services.AddSingleton<SelectedYouTubeViewerStore>();
-
-                    services.AddTransient<YouTubeViewersViewModel>(CreateYouTubeViewersViewModel);
-                    services.AddSingleton<MainViewModel>();
+                    services.AddSingleton<GroupsViewModel>(CreateGroupsViewModel);
+                    services.AddSingleton<MainWindowViewModel>();
 
                     services.AddSingleton<MainWindow>((services) => new MainWindow()
                     {
-                        DataContext = services.GetRequiredService<MainViewModel>()
+                        DataContext = services.GetRequiredService<MainWindowViewModel>()
                     });
                 })
                 .Build();
@@ -50,11 +56,13 @@ namespace MVVM_Lb4
         {
             _host.Start();
 
-            YouTubeViewersDbContextFactory youTubeViewersDbContextFactory = 
-                _host.Services.GetRequiredService<YouTubeViewersDbContextFactory>();
-            using(YouTubeViewersDbContext context = youTubeViewersDbContextFactory.Create())
+            ApplicationDbContextFactory groupsDbContextFactory = 
+                _host.Services.GetRequiredService<ApplicationDbContextFactory>();
+            using(ApplicationDbContext context = groupsDbContextFactory.Create())
             {
-                context.Database.Migrate();
+                //context.Database.EnsureCreatedAsync();
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
             }
 
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
@@ -71,12 +79,10 @@ namespace MVVM_Lb4
             base.OnExit(e);
         }
 
-        private YouTubeViewersViewModel CreateYouTubeViewersViewModel(IServiceProvider services)
+        private GroupsViewModel CreateGroupsViewModel(IServiceProvider services)
         {
-            return Student.LoadViewModel(
-                services.GetRequiredService<YouTubeViewersStore>(),
-                services.GetRequiredService<SelectedYouTubeViewerStore>(),
-                services.GetRequiredService<ModalNavigationStore>());
+            return GroupsViewModel.LoadViewModel(
+                services.GetRequiredService<GroupsStore>());
         }
     }
 }

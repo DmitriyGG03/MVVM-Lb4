@@ -1,20 +1,20 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MVVM_Lb4.Domain.Models.Base;
 
 namespace MVVM_Lb4.Domain.Models;
 
-public class Student : INotifyPropertyChanged
+public class Student : ModelBase
 {
 	#region Parameters
+	
+	public Guid StudentId { get; set; }
 
 	private string _name;
 	private string _lastName;
 	private string _patronymic;
 	private byte _courseNumber;
-
-	public Guid StudentId { get; set; }
-
 	public string Name
 	{
 		get => _name;
@@ -64,9 +64,8 @@ public class Student : INotifyPropertyChanged
 		}
 	}
 
-
-	public int GroupId { get; private set; }
-	public Group? Group { get; private set; }
+	public Guid GroupId { get; set; }
+	public Group? Group { get; set; }
 
 	#endregion Parameters
 
@@ -83,11 +82,4 @@ public class Student : INotifyPropertyChanged
 
 	public Student()
 	{ }
-
-	public event PropertyChangedEventHandler? PropertyChanged;
-	public void OnPropertyChanged([CallerMemberName] string prop = "")
-	{
-		if (PropertyChanged != null)
-			PropertyChanged(this, new PropertyChangedEventArgs(prop));
-	}
 }

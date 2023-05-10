@@ -1,10 +1,10 @@
 using System;
 using System.Windows;
-using MVVM_Lb4.Infrastructure.Commands.Base;
+using MVVM_Lb4.Commands.Base;
 
-namespace MVVM_Lb4.Infrastructure.Commands;
+namespace MVVM_Lb4.Commands;
 
-internal class CloseApplicationCommand : Command
+internal class CloseApplicationCommand : CommandBase
 {
     public override bool CanExecute(object parameter) => true;
 

@@ -1,9 +1,9 @@
 using System;
-using MVVM_Lb4.Infrastructure.Commands.Base;
+using MVVM_Lb4.Commands.Base;
 
 namespace MVVM_Lb4.Infrastructure.Commands;
 
-internal class LambdaCommand : Command
+internal class LambdaCommand : CommandBase
 {
     private readonly Action<object> _execute;
     private readonly Func<object, bool> _canExecute;

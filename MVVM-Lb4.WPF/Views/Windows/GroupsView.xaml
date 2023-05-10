@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:components="clr-namespace:MVVM-Lb4.WPF.Components"
              xmlns:local="clr-namespace:MVVM_Lb4.Views.Windows"
-             xmlns:components1="clr-namespace:MVVM-Lb4.WPF.Components"
+             xmlns:components="clr-namespace:MVVM_Lb4.Components"
+             xmlns:commands="clr-namespace:MVVM_Lb4.Commands"
+             xmlns:components1="clr-namespace:MVVM_Lb4.Components"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+
     <Grid>
         <StackPanel VerticalAlignment="Center">
             <StackPanel.Style>
@@ -22,78 +24,33 @@
                 </Style>
             </StackPanel.Style>
 
-            <!-- <custom:LoadingSpinner -->
-            <!--     Diameter="100" -->
-            <!--     IsLoading="True" -->
-            <!--     Thickness="3" /> -->
-
             <TextBlock
                 Margin="0,10,0,0"
                 Text="Loading Groups..."
                 TextAlignment="Center" />
         </StackPanel>
 
-        <Grid>
-            <Grid.Style>
-                <Style TargetType="Grid">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsLoading}" Value="False">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
 
-            <Grid>
-                <Grid.Style>
-                    <Style TargetType="Grid">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasErrorMessage}" Value="True">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Style>
-
-                <TextBlock
-                    VerticalAlignment="Center"
-                    Style="{StaticResource ErrorMessage}"
-                    Text="{Binding ErrorMessage}"
-                    TextAlignment="Center" />
-            </Grid>
-
-            <Grid>
-                <Grid.Style>
-                    <Style TargetType="Grid">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding HasErrorMessage}" Value="False">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Style>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="3*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+        <Grid Name="GroupListGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
 
 
-                <Button
+            <Button
                     Grid.Row="0"
                     Grid.Column="0"
                     AutomationProperties.AutomationId="CreateNewGroupButton"
-                    Command="{Binding AddYouTubeViewersCommand}"
+                    Command="{Binding AddGroupCommand}"
                     Content="Create a new group"
                     FontSize="16" />
 
-                <Button
+            <Button
                     Grid.Row="0"
                     Grid.Column="1"
                     AutomationProperties.AutomationId="AddStudentButton"
@@ -101,20 +58,26 @@
                     IsEnabled="true"
                     Content="Add student into the group"
                     FontSize="16" />
-                <!-- Add binding to IsEnabled field in the button -->
+            <!-- Add binding to IsEnabled field in the button -->
 
-                <components:GroupsListing
+            <components1:GroupsListing
                     Grid.Row="1"
                     Grid.Column="0"
-                    DataContext="{Binding GroupsListingViewModel}" />
+                    DataContext="{Binding GroupsListingViewModel}"/>
 
-                <components:GroupsStudents
+            <components1:GroupsStudents                    
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="20,0,0,0"
-                    DataContext="{Binding GroupsStudentsViewModel}" />
+                    DataContext="{Binding GroupsStudentsViewModel}"/>
 
-            </Grid>
+            <GridSplitter 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    HorizontalAlignment="Right"
+                    Width="2"/>
+
         </Grid>
+
     </Grid>
 </UserControl>

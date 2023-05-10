@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MVVM_Lb4.Domain.Models.Base;
 
 namespace MVVM_Lb4.Domain.Models;
 
-public class Group : INotifyPropertyChanged
+public class Group : ModelBase
 {
 	#region Parameters
 
+    public Guid GroupId { get; set; }
+    
 	private string _groupName;
-    private ICollection<Student>? _students;
-
-	public Guid GroupId { get; set; }
-
-	public string GroupFullName 
+	public string GroupName 
     {
         get => _groupName;
 
@@ -30,7 +29,8 @@ public class Group : INotifyPropertyChanged
         } 
     }
 
-    public ICollection<Student>? Students
+    private IList<Student>? _students = new List<Student>();
+    public IList<Student>? Students
     {
         get => _students;
         set
@@ -44,19 +44,13 @@ public class Group : INotifyPropertyChanged
 
 	#endregion Parameters
 
-	public Group(string groupName, ICollection<Student>? students = null)
+	public Group(string groupName, IList<Student>? students = null)
     {
-        GroupFullName = groupName;        
+        GroupName = groupName;        
         Students = students;
     }
 
 	public Group()
     { }
 
-	public event PropertyChangedEventHandler PropertyChanged;
-	public void OnPropertyChanged([CallerMemberName] string prop = "")
-	{
-		if (PropertyChanged != null)
-			PropertyChanged(this, new PropertyChangedEventArgs(prop));
-	}
 }

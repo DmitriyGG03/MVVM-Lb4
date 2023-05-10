@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MVVM_Lb4.Stores;
 
 namespace MVVM_Lb4.Views.DialogWindows
 {
@@ -20,11 +21,11 @@ namespace MVVM_Lb4.Views.DialogWindows
 	/// </summary>
 	public partial class AddStudentWindow : Window
 	{
-		internal AddStudentWindow(MainWindowViewModel mainWindowViewModel)
+		internal AddStudentWindow(GroupsViewModel groupsViewModel)
 		{
 			InitializeComponent();
 
-			DataContext = mainWindowViewModel;
+			DataContext = groupsViewModel;
 		}
 
 		private void Accept_Click(object sender, RoutedEventArgs e) // Of course, better way is to create a new command, but this way is easier

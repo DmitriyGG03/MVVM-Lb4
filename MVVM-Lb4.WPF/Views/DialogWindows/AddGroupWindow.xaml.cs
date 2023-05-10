@@ -12,17 +12,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MVVM_Lb4.Stores;
 
 namespace MVVM_Lb4.Views.DialogWindows
 {
     public partial class AddGroupWindow : Window
     {
-		internal AddGroupWindow(MainWindowViewModel mainWindowViewModel)
+		internal AddGroupWindow(GroupsViewModel groupsViewModel)
         {
             //Add MainWindowsViewModel object into constructor in order to do not create new and use already existed instead
             InitializeComponent();
 
-            DataContext = mainWindowViewModel;
+            DataContext = groupsViewModel;
 		}
 
 		/// <summary>Set success result for dialog window</summary>

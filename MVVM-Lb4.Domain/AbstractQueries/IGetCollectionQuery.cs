@@ -1,6 +1,8 @@
+using MVVM_Lb4.Domain.Models;
+
 namespace MVVM_Lb4.Domain.AbstractQueries;
 
 public interface IGetCollectionQuery<T>
 {
-    Task<IEnumerable<T>> Execute();
+    Task<List<T>> Execute(object? param = null);
 }
