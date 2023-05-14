@@ -13,25 +13,24 @@ public class GroupsStudentsViewModel : ViewModel
 {
     #region Params
 
-    private GroupsStore GroupsStore { get; }
-
-    public List<Student> StudentsOfSelectedGroup
+    private List<Student> _studentsView;
+    public List<Student> StudentsView
     {
-        get => GroupsStore.StudentsView;
-        set => GroupsStore.StudentsView = value;
+        get => _studentsView;
+        set => Set(ref _studentsView, value);
     }
 
-    public bool GroupIsSelected => GroupsStore.StudentsView is not null; //Delete if not use
-
-    public string? SelectedGroupFullName
-    {
-        get => GroupsStore.SelectedGroup?.GroupName;
-    }
+    private GroupsStoreController _groupsStore { get; }
 
     #endregion Params
 
-    public GroupsStudentsViewModel(GroupsStore groupsStore)
+    public GroupsStudentsViewModel(GroupsStoreController groupsStore)
     {
-        GroupsStore = groupsStore;
+        _groupsStore = groupsStore;
+    }
+
+    public async void GetStudentsList()
+    {
+        StudentsView = await _groupsStore.LoadStudents();
     }
 }

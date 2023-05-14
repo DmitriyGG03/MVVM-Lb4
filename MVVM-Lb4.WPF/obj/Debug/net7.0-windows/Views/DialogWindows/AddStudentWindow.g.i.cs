@@ -52,7 +52,7 @@ namespace MVVM_Lb4.Views.DialogWindows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;component/views/dialogwindows/addstudentwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;V1.0.0.0;component/views/dialogwindows/addstudentwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\DialogWindows\AddStudentWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

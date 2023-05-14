@@ -5,7 +5,7 @@ using MVVM_Lb4.EF.DTOs;
 
 namespace MVVM_Lb4.EF.Commands.DeleteCommands;
 
-public class DeleteStudentCommand : IDeleteCommand<Guid>
+public class DeleteStudentCommand : IDeleteCommand<Student>
 {
     private readonly ApplicationDbContextFactory _contextFactory;
 
@@ -18,21 +18,12 @@ public class DeleteStudentCommand : IDeleteCommand<Guid>
     {
         using (ApplicationDbContext context = _contextFactory.Create())
         {
-            StudentDbSaveObject? student = context.Students.FirstOrDefault(i => i.StudentId.Equals(id));
+            Student? student = context.Students.FirstOrDefault(i => i.StudentId.Equals(id));
             
             if (student is null)
                 throw new DataException("Student was not found");
             
-            context.Students.Remove(new StudentDbSaveObject()
-            {
-                StudentId = student.StudentId,
-                Name = student.Name,
-                LastName = student.LastName,
-                Patronymic = student.Patronymic,
-                CourseNumber = student.CourseNumber,
-                Group = student.Group
-            });
-            
+            context.Students.Remove(student);
             await context.SaveChangesAsync();
         }
     }

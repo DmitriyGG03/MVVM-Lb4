@@ -1,11 +1,12 @@
 using System.Data;
 using MVVM_Lb4.Domain.AbstractCommands;
 using MVVM_Lb4.Domain.Models;
+using MVVM_Lb4.Domain.Models.Base;
 using MVVM_Lb4.EF.DTOs;
 
 namespace MVVM_Lb4.EF.Commands.DeleteCommands;
 
-public class DeleteGroupCommand : IDeleteCommand<Guid>
+public class DeleteGroupCommand : IDeleteCommand<Group> 
 {
     private readonly ApplicationDbContextFactory _contextFactory;
 
@@ -18,18 +19,14 @@ public class DeleteGroupCommand : IDeleteCommand<Guid>
     {
         using (ApplicationDbContext context = _contextFactory.Create())
         {
-            GroupDbSaveObject? group = context.Groups.FirstOrDefault(i => i.GroupId.Equals(id));
+            Group? group = context.Groups.FirstOrDefault(i => i.GroupId.Equals(id));
 
             if (group is null)
                 throw new DataException("Group was not found");
 
-            context.Groups.Remove(new GroupDbSaveObject()
-            {
-                GroupId = group.GroupId,
-                GroupName = group.GroupName,
-                Students = group.Students
-            });
-            
+            context.Students.Where(s => s.Group.Equals(group)).
+                Select(s => context.Students.Remove(s));
+            context.Groups.Remove(group);
             await context.SaveChangesAsync();
         }
     }

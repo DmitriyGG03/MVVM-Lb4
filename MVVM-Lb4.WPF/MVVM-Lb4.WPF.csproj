@@ -22,4 +22,17 @@
       <ProjectReference Include="..\MVVM_Lb4.EF\MVVM_Lb4.EF.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Views\DialogWindows\ConfirmOperationWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
 </Project>

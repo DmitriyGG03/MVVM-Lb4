@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\App.xaml
-61310151414
+7-82343693
 
-26-2111644831
+272000793693
 245-562804227
-Components\GroupsListing.xaml;Components\GroupsStudents.xaml;Views\DialogWindows\AddGroupWindow.xaml;Views\DialogWindows\AddStudentWindow.xaml;Views\Windows\GroupsView.xaml;Views\Windows\Main\MainWindow.xaml;
+Components\GroupsListing.xaml;Components\GroupsStudents.xaml;Views\DialogWindows\AddGroupWindow.xaml;Views\DialogWindows\AddStudentWindow.xaml;Views\DialogWindows\ConfirmOperationWindow.xaml;Views\Windows\GroupsView.xaml;Views\Windows\Main\MainWindow.xaml;
 
-False
+True
 

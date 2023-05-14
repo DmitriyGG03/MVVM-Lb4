@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using MVVM_Lb4.Commands;
+using MVVM_Lb4.Domain.AbstractCommands;
 using MVVM_Lb4.Domain.AbstractQueries;
 using MVVM_Lb4.Domain.Models;
 using MVVM_Lb4.EF;
+using MVVM_Lb4.EF.Commands.AddCommands;
+using MVVM_Lb4.EF.Commands.DeleteCommands;
 using MVVM_Lb4.EF.Queries;
 using MVVM_Lb4.Stores;
 using MVVM_Lb4.ViewModels;
-using MVVM_Lb4.Views.DialogWindows;
 using MVVM_Lb4.Views.Windows.Main;
 using YouTubeViewers.WPF.HostBuilders;
+using DeleteGroupCommand = MVVM_Lb4.EF.Commands.DeleteCommands.DeleteGroupCommand;
 
 namespace MVVM_Lb4
 {
@@ -36,12 +37,17 @@ namespace MVVM_Lb4
                 .AddDbContext()
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddSingleton<GroupsStore>();
+                    services.AddSingleton<GroupsStoreController>();
                     
                     services.AddSingleton<IGetCollectionQuery<Group>, GetAllGroupsQuery>();
                     services.AddSingleton<IGetCollectionQuery<Student>, GetAllStudentsInGroupQuery>();
+                    
+                    services.AddTransient<IAddCommand<Group>, AddGroupDbCommand>();
+                    services.AddTransient<IAddCommand<Student>, AddStudentDbCommand>();
+                    services.AddTransient<IDeleteCommand<Group>, DeleteGroupCommand>();
+                    services.AddTransient<IDeleteCommand<Student>, DeleteStudentCommand>();
 
-                    services.AddSingleton<GroupsViewModel>(CreateGroupsViewModel);
+                    services.AddSingleton<GroupsViewModel>();
                     services.AddSingleton<MainWindowViewModel>();
 
                     services.AddSingleton<MainWindow>((services) => new MainWindow()
@@ -60,9 +66,7 @@ namespace MVVM_Lb4
                 _host.Services.GetRequiredService<ApplicationDbContextFactory>();
             using(ApplicationDbContext context = groupsDbContextFactory.Create())
             {
-                //context.Database.EnsureCreatedAsync();
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+                context.Database.Migrate();
             }
 
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
@@ -77,12 +81,6 @@ namespace MVVM_Lb4
             _host.Dispose();
 
             base.OnExit(e);
-        }
-
-        private GroupsViewModel CreateGroupsViewModel(IServiceProvider services)
-        {
-            return GroupsViewModel.LoadViewModel(
-                services.GetRequiredService<GroupsStore>());
         }
     }
 }

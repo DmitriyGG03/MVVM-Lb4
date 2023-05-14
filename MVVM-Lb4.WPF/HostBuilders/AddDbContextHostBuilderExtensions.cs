@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,7 +13,9 @@ namespace YouTubeViewers.WPF.HostBuilders
         {
             hostBuilder.ConfigureServices((context, services) =>
             {
-                string connectionString = context.Configuration.GetConnectionString("SQLite");
+                string? connectionString = context.Configuration.GetConnectionString("SQLite");
+
+                if (connectionString is null) throw new DataException("Connection string has not been found!");
 
                 services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
                 services.AddSingleton<ApplicationDbContextFactory>();

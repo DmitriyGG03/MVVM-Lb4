@@ -15,11 +15,11 @@ namespace MVVM_Lb4.Commands;
 /// </summary>
 public class AddStudentCommand : AsyncCommandBase
 {
-    private readonly GroupsStore _store;
+    private readonly GroupsStoreController _store;
     private readonly GroupsViewModel _groupsViewModel;
     
     public AddStudentCommand(
-        GroupsStore grStore,  
+        GroupsStoreController grStore,  
         GroupsViewModel groupsViewModel)
     {
         _store = grStore;
@@ -32,7 +32,7 @@ public class AddStudentCommand : AsyncCommandBase
         
         if ((bool)addGroupWindow.ShowDialog()!)
         {
-            //TODO: It is good review code below
+            //TODO: It is good to review code below
             if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredStudentName, "Student name")) return;
             if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredStudentSurname, "Student surname")) return;
             if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredStudentPatronymic, "Student patronymic")) return;
@@ -41,14 +41,15 @@ public class AddStudentCommand : AsyncCommandBase
                 _groupsViewModel.EnteredStudentName,
                 _groupsViewModel.EnteredStudentSurname,
                 _groupsViewModel.EnteredStudentPatronymic,
-                byte.Parse(_groupsViewModel.EnteredStudentCourse),
-                _store.SelectedGroup!));
+                byte.Parse(_groupsViewModel.EnteredStudentCourse)) {GroupId = _store.SelectedGroup!.GroupId});
 
-            MessageBox.Show($"A student called {_groupsViewModel.EnteredStudentName} has been successfully created");
+            MessageBox.Show($"A student called {_groupsViewModel.EnteredStudentName} has been successfully created", "Success action", 
+                MessageBoxButton.OK, MessageBoxImage.Information);
         }
         else
         {
-            MessageBox.Show("You must enter data in order to create a new student!");
+            MessageBox.Show("You must enter data in order to create a new student!", "Data error", 
+                MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

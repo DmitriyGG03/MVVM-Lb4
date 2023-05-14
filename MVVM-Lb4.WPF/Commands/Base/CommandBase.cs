@@ -18,14 +18,16 @@ public abstract class CommandBase : ICommand
     
     protected bool ValidateStringSyntaxEnteredData(string data, string paramName)
     {
-        if (data is null)
+        if (string.IsNullOrWhiteSpace(data))
         {
-            MessageBox.Show("You must enter data");
+            MessageBox.Show("You must enter data in order to create a new object!", "Data error", 
+                MessageBoxButton.OK, MessageBoxImage.Error);
             return false;
         }
-        else if (data.Length < 3 || data.Length > 15)
+        else if (data.Length < 3 || data.Length > 30)
         {
-            MessageBox.Show($"{paramName} must have minimum 3 symbols and maximum 30");
+            MessageBox.Show($"{paramName} must have minimum 3 symbols and maximum 30", "Data error", 
+                MessageBoxButton.OK, MessageBoxImage.Error);
             return false;
         }
         else return true;

@@ -8,9 +8,9 @@ namespace YouTubeViewers.WPF.Commands;
 
     public class LoadStudentsCommand : AsyncCommandBase
     {
-        private readonly GroupsStore _groupsStore;
+        private readonly GroupsStoreController _groupsStore;
 
-        public LoadStudentsCommand(GroupsStore groupsStore)
+        public LoadStudentsCommand(GroupsStoreController groupsStore)
         {
             _groupsStore = groupsStore;
         }

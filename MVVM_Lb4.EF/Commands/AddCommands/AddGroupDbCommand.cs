@@ -13,17 +13,11 @@ public class AddGroupDbCommand : IAddCommand<Group>
         _contextFactory = contextFactory;
     }
 
-    public async Task Execute(Group addingComponent)
+    public async Task Execute(Group group)
     {
         using (ApplicationDbContext context = _contextFactory.Create())
-        { 
-            
-            context.Groups.Add(new GroupDbSaveObject()
-            {
-                GroupId = addingComponent.GroupId,
-                GroupName = addingComponent.GroupName,
-                Students = addingComponent.Students
-            });
+        {
+            context.Groups.Add(group);
             await context.SaveChangesAsync();
         }
     }

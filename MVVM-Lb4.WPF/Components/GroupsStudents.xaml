@@ -13,7 +13,7 @@
             Header="{Binding SelectedGroupFullName, FallbackValue='Students', TargetNullValue= 'Group not selected'}"
             Margin="5,5,5,5" 
             SnapsToDevicePixels="true">
-            <DataGrid ItemsSource="{Binding StudentsOfSelectedGroup}"
+            <DataGrid ItemsSource="{Binding StudentsView}"
                       AutoGenerateColumns="False"
                       IsReadOnly="false">
                 <DataGrid.Columns>

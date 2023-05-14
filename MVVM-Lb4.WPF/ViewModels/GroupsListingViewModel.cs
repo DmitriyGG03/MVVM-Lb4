@@ -13,23 +13,51 @@ using MVVM_Lb4.ViewModels.Base;
 
 namespace MVVM_Lb4.ViewModels
 {
-	public class GroupsListingViewModel : ViewModel
-	{
-		public List<Group> GroupsListView { get => groupsStore.GroupsView; }
+    public class GroupsListingViewModel : ViewModel
+    {
+        private List<Group> _groupsView =
+            new List<Group>();
 
-		private GroupsStore groupsStore { get; }
+        public List<Group> GroupsView
+        {
+            get => _groupsView;
+            set => Set(ref _groupsView, value);
+        }
 
-		public Group SelectedGroup { get => groupsStore.SelectedGroup; set => groupsStore.SelectedGroup = value; }
+        private GroupsStoreController _groupsStore { get; }
+        private GroupsViewModel _groupsViewModel { get; }
 
-		public ICommand DeleteGroupCommand { get; }
-		public ICommand EditGroupCommand { get; }
+        public Group? SelectedGroup
+        {
+            set
+            {
+                _groupsStore.SelectedGroup = value;
+                _groupsViewModel.GroupsStudentsViewModel.GetStudentsList();
 
-		public GroupsListingViewModel(GroupsStore groupsStore)
-		{
-			this.groupsStore = groupsStore;
+                if (value is not null)
+                    _groupsViewModel.GroupIsSelected = true;
+                
+                else _groupsViewModel.GroupIsSelected = false;
+            }
+        }
 
-			DeleteGroupCommand = new DeleteGroupCommand();
-			EditGroupCommand = new EditGroupCommand();
-		}
-	}
+        public ICommand DeleteGroupCommand { get; }
+        public ICommand EditGroupCommand { get; }
+
+        public GroupsListingViewModel(GroupsViewModel groupsViewModel, GroupsStoreController groupsStore)
+        {
+            _groupsStore = groupsStore;
+            _groupsViewModel = groupsViewModel;
+
+            LoadGroups();
+
+            DeleteGroupCommand = new DeleteGroupCommand();
+            EditGroupCommand = new EditGroupCommand();
+        }
+
+        public async void LoadGroups()
+        {
+            GroupsView = await _groupsStore.LoadGroups();
+        }
+    }
 }

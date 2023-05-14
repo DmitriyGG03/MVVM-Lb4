@@ -63,7 +63,7 @@ namespace MVVM_Lb4.Views.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;component/views/windows/groupsview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;V1.0.0.0;component/views/windows/groupsview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Windows\GroupsView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

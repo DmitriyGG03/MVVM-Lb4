@@ -20,18 +20,7 @@ public class GetAllStudentsInGroupQuery : IGetCollectionQuery<Student>
         {
             using (ApplicationDbContext context = _contextFactory.Create())
             {
-                IList<StudentDbSaveObject> groups = 
-                    await context.Students.Where(s => s.Group.Equals(param as Group)).ToListAsync();
-            
-                return groups.Select(s => new Student()
-                {
-                    StudentId = s.StudentId,
-                    Name = s.Name,
-                    LastName = s.LastName,
-                    Patronymic = s.Patronymic,
-                    CourseNumber = s.CourseNumber,
-                    Group = s.Group
-                }).ToList();
+                return await context.Students.Where(s => s.Group.Equals(param as Group)).ToListAsync();
             }
         }
 

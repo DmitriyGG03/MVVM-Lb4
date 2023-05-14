@@ -69,7 +69,7 @@ public class Student : ModelBase
 
 	#endregion Parameters
 
-	public Student(string name, string lastName, string patronymic, byte course, Group group)
+	public Student(string name, string lastName, string patronymic, byte course)
 	{
 		if (name is null || lastName is null || patronymic is null) throw new ArgumentNullException();
 
@@ -77,7 +77,6 @@ public class Student : ModelBase
 		LastName = lastName;
 		Patronymic = patronymic;
 		CourseNumber = course;
-		Group = group;
 	}
 
 	public Student()

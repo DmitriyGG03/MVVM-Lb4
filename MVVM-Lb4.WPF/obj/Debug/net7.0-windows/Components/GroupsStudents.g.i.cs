@@ -53,7 +53,7 @@ namespace MVVM_Lb4.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;component/components/groupsstudents.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;V1.0.0.0;component/components/groupsstudents.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Components\GroupsStudents.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

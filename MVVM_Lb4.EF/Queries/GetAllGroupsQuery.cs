@@ -18,14 +18,7 @@ public class GetAllGroupsQuery : IGetCollectionQuery<Group>
     {
         using (ApplicationDbContext context = _contextFactory.Create())
         {
-            IList<GroupDbSaveObject> groups = context.Groups.ToList();
-            
-            return groups.Select(g => new Group()
-            {
-                GroupId = g.GroupId,
-                GroupName = g.GroupName,
-                Students = null
-            }).ToList();
+            return await context.Groups.ToListAsync();
         }
     }
 }

@@ -60,7 +60,7 @@ namespace MVVM_Lb4.Views.Windows.Main {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;component/views/windows/main/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MVVM-Lb4.WPF;V1.0.0.0;component/views/windows/main/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Views\Windows\Main\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

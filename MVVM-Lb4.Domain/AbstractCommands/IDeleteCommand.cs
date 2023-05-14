@@ -3,6 +3,6 @@ namespace MVVM_Lb4.Domain.AbstractCommands
 {
     public interface IDeleteCommand<T>
     {
-        Task Execute(T id);
+        Task Execute(Guid id);
     }
 }

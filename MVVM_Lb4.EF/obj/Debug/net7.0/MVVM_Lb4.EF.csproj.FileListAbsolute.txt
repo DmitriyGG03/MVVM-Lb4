@@ -13,3 +13,5 @@ C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM_Lb4.EF\obj\Debug\net7.
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM_Lb4.EF\obj\Debug\net7.0\refint\MVVM_Lb4.EF.dll
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM_Lb4.EF\obj\Debug\net7.0\MVVM_Lb4.EF.pdb
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM_Lb4.EF\obj\Debug\net7.0\ref\MVVM_Lb4.EF.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM_Lb4.EF\bin\Debug\net7.0\MVVM_Lb4.EF.runtimeconfig.json
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM_Lb4.EF\obj\Debug\net7.0\MVVM_Lb4.EF.genruntimeconfig.cache

@@ -17,15 +17,7 @@ public class UpdateStudentCommand : IUpdateCommand<Student>
     {
         using (ApplicationDbContext context = _contextFactory.Create())
         {
-            context.Students.Update(new StudentDbSaveObject()
-            {
-                StudentId = student.StudentId,
-                Name = student.Name,
-                LastName = student.LastName,
-                Patronymic = student.Patronymic,
-                CourseNumber = student.CourseNumber,
-                Group = student.Group
-            });
+            context.Students.Update(student);
             await context.SaveChangesAsync();
         }
     }

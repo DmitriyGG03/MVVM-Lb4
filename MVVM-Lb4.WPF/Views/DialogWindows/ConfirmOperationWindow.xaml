@@ -1,0 +1,23 @@
+﻿<Window x:Class="MVVM_Lb4.Views.DialogWindows.ConfirmOperationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
+        Title="Creating a new group" Height="450" Width="800" ResizeMode="NoResize">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock>Enter name for new group:</TextBlock>
+        <TextBox Text="{Binding EnteredGroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" MinWidth="250"/>
+
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
+            <Button IsCancel="True" MinWidth="60">Cancel</Button>
+        </WrapPanel>
+
+    </Grid>
+</Window>

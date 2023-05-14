@@ -16,11 +16,11 @@ namespace MVVM_Lb4.Commands;
 /// </summary>
 public class AddGroupCommand : AsyncCommandBase
 {
-    private readonly GroupsStore _store;
+    private readonly GroupsStoreController _store;
     private readonly GroupsViewModel _groupsViewModel;
     
     public AddGroupCommand(
-        GroupsStore grStore, 
+        GroupsStoreController grStore, 
         GroupsViewModel groupsViewModel)
     {
         _store = grStore;
@@ -35,20 +35,19 @@ public class AddGroupCommand : AsyncCommandBase
         {
             if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredGroupName, "Group name")) return;
 
-            if (_store.GroupsView.Any(g => g.GroupName.Equals(_groupsViewModel.EnteredGroupName)))
+            if (_groupsViewModel.GroupsListingViewModel.GroupsView.Any(g => g.GroupName.Equals(_groupsViewModel.EnteredGroupName)))
             {
-                MessageBox.Show("A group with the same name already exists!");
+                MessageBox.Show("A group with the same name already exists!", "Group name error", 
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 await _store.AddGroupToDb(new Group(_groupsViewModel.EnteredGroupName));
+                _groupsViewModel.GroupsListingViewModel.LoadGroups();
 
-                MessageBox.Show($"A group called {_groupsViewModel.EnteredGroupName} has been successfully created");
+                MessageBox.Show($"A group called {_groupsViewModel.EnteredGroupName} has been successfully created", "Success action", 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
-        }
-        else
-        {
-            MessageBox.Show("You must enter data in order to create a new group!");
         }
     }
 }

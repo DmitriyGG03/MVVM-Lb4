@@ -699,6 +699,7 @@
       "MVVM_Lb4.EF/1.0.0": {
         "dependencies": {
           "MVVM-Lb4.Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.5"
         },
         "runtime": {

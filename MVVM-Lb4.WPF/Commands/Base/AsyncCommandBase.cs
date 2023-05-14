@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MVVM_Lb4.Commands.Base;
@@ -37,8 +38,10 @@ public abstract class AsyncCommandBase : CommandBase
         {
             await ExecuteAsync(parameter);
         }
-        catch (Exception)
-        { }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Operation Error: {ex.Message}");
+        }
         finally
         {
             IsExecuting = false;

@@ -17,12 +17,7 @@ public class UpdateGroupCommand : IUpdateCommand<Group>
     {
         using (ApplicationDbContext context = _contextFactory.Create())
         {
-            context.Groups.Update(new GroupDbSaveObject()
-            {
-                GroupId = group.GroupId,
-                GroupName = group.GroupName,
-                Students = group.Students
-            });
+            context.Groups.Update(group);
             await context.SaveChangesAsync();
         }
     }

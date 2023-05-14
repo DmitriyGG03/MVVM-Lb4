@@ -31,6 +31,15 @@ public class GroupsViewModel : ViewModel
 
     #region AddStudent
 
+    private bool _groupIsSelected = false;
+
+    public bool GroupIsSelected
+    {
+        get => _groupIsSelected; 
+        set => Set(ref _groupIsSelected, value); 
+    }
+
+
     private string _enteredStudentName = "";
     private string _enteredStudentSurname = "";
     private string _enteredStudentPatronymic = "";
@@ -73,29 +82,17 @@ public class GroupsViewModel : ViewModel
 
     #endregion
 
-    public GroupsViewModel(GroupsStore groupsStore)
+    public GroupsViewModel(GroupsStoreController groupsStore)
     {
         LoadGroupsCommand = new LoadGroupsCommand(groupsStore);
         LoadGroupsCommand.Execute(null);
 
-		GroupsListingViewModel = new GroupsListingViewModel(groupsStore);
+		GroupsListingViewModel = new GroupsListingViewModel(this, groupsStore);
         GroupsStudentsViewModel = new GroupsStudentsViewModel(groupsStore);
+        
+        
 
         AddGroupCommand = new AddGroupCommand(groupsStore, this);
         AddStudentCommand = new AddStudentCommand(groupsStore, this);
-    }
-
-    /// <summary>
-    /// Create new GroupsViewModel and execute LoadGroupsCommand
-    /// </summary>
-    /// <param name="groupsStore">Store data from db</param>
-    /// <returns>New GroupsViewModel</returns>
-    public static GroupsViewModel LoadViewModel(GroupsStore groupsStore)
-    {
-        GroupsViewModel viewModel = new GroupsViewModel(groupsStore);
-
-        //viewModel.LoadGroupsCommand;
-
-        return viewModel;
     }
 }
