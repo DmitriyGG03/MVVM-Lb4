@@ -5,8 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:faf="http://schemas.fontawesome.com/icons/fonts"
         xmlns:fas="http://schemas.fontawesome.com/icons/svg"
-        xmlns:cmd="clr-namespace:MVVM_Lb4.Infrastructure.Commands"
-        xmlns:vms="clr-namespace:MVVM_Lb4.ViewModels"
         xmlns:views="clr-namespace:MVVM_Lb4.Views.Windows"
         xmlns:commands="clr-namespace:MVVM_Lb4.Commands"
         Title="University Group Manager"
