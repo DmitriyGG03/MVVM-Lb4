@@ -18,13 +18,14 @@ namespace MVVM_Lb4.Views.DialogWindows
 {
     public partial class ConfirmOperationWindow : Window
     {
-		internal ConfirmOperationWindow(GroupsViewModel groupsViewModel)
+		internal ConfirmOperationWindow(string operation)
         {
-            //Add MainWindowsViewModel object into constructor in order to do not create new and use already existed instead
+            
             InitializeComponent();
 
-            DataContext = groupsViewModel;
-		}
+            Title = Char.ToUpper(operation[0]) + operation.Substring(1);
+            textBlock.Text = $"Are you sure you want to {operation}?";
+        }
 
 		/// <summary>Set success result for dialog window</summary>
 		private void Accept_Click(object sender, RoutedEventArgs e) // Of course, better way is to create a new command, but this way is easier
