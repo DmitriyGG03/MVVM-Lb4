@@ -29,7 +29,8 @@ public class AddGroupCommand : AsyncCommandBase
 
     public override async Task ExecuteAsync(object parameter)
     {
-        AddGroupWindow addGroupWindow = new AddGroupWindow(_groupsListingViewModel);
+        _groupsListingViewModel.EnteredGroupName = null;
+        AddGroupWindow addGroupWindow = new AddGroupWindow(_groupsListingViewModel, "Creating a new group");
             
         if ((bool)addGroupWindow.ShowDialog()!)
         {

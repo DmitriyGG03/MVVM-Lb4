@@ -84,7 +84,7 @@ namespace MVVM_Lb4.ViewModels
 
             AddGroupCommand = new AddGroupCommand(groupsStore, this);
             DeleteGroupCommand = new DeleteGroupCommand(groupsStore, this);
-            EditGroupCommand = new EditGroupCommand();
+            EditGroupCommand = new EditGroupCommand(groupsStore, this);
         }
 
         public async void LoadGroups()

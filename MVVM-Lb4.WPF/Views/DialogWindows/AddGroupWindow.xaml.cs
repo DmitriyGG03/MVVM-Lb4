@@ -18,12 +18,13 @@ namespace MVVM_Lb4.Views.DialogWindows
 {
     public partial class AddGroupWindow : Window
     {
-		internal AddGroupWindow(GroupsListingViewModel groupsViewModel)
+		internal AddGroupWindow(GroupsListingViewModel groupsViewModel, string operation)
         {
             //Add MainWindowsViewModel object into constructor in order to do not create new and use already existed instead
             InitializeComponent();
 
-            groupsViewModel.EnteredGroupName = "";
+            Title = operation;
+
             DataContext = groupsViewModel;
 		}
 

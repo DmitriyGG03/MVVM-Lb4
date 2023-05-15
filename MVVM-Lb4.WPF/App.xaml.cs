@@ -15,6 +15,7 @@ using MVVM_Lb4.Domain.Models;
 using MVVM_Lb4.EF;
 using MVVM_Lb4.EF.Commands.AddCommands;
 using MVVM_Lb4.EF.Commands.DeleteCommands;
+using MVVM_Lb4.EF.Commands.UpdateCommands;
 using MVVM_Lb4.EF.Queries;
 using MVVM_Lb4.Stores;
 using MVVM_Lb4.ViewModels;
@@ -45,7 +46,7 @@ namespace MVVM_Lb4
                     services.AddTransient<IAddCommand<Group>, AddGroupDbCommand>();
                     services.AddTransient<IAddCommand<Student>, AddStudentDbCommand>();
                     services.AddTransient<IDeleteCommand<Group>, DeleteGroupCommand>();
-                    services.AddTransient<IDeleteCommand<Student>, DeleteStudentCommand>();
+                    services.AddTransient<IUpdateCommand<Group>, UpdateGroupCommand>();
 
                     services.AddSingleton<GroupsViewModel>();
                     services.AddSingleton<MainWindowViewModel>();

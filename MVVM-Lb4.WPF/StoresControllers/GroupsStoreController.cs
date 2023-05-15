@@ -18,7 +18,7 @@ public class GroupsStoreController
     private readonly IAddCommand<Group> _addGroupCommand;
     private readonly IAddCommand<Student> _addStudentCommand;
     private readonly IDeleteCommand<Group> _deleteGroupCommand;
-    private readonly IDeleteCommand<Student> _deleteStudentCommand;
+    private readonly IUpdateCommand<Group> _updateGroupCommand;
 
     #region Commands
 
@@ -53,7 +53,7 @@ public class GroupsStoreController
         IAddCommand<Group> addGroupCommand,
         IAddCommand<Student> addStudentCommand,
         IDeleteCommand<Group> deleteGroupCommand,
-        IDeleteCommand<Student> deleteStudentCommand
+        IUpdateCommand<Group> updateGroupCommand
     )
     {
         _getGroupsCollection = getGroupsCollection;
@@ -62,7 +62,7 @@ public class GroupsStoreController
         _addGroupCommand = addGroupCommand;
         _addStudentCommand = addStudentCommand;
         _deleteGroupCommand = deleteGroupCommand;
-        _deleteStudentCommand = deleteStudentCommand;
+        _updateGroupCommand = updateGroupCommand;
 
         //_groupsViewModel = groupsViewModel;
     }
@@ -93,9 +93,9 @@ public class GroupsStoreController
     {
         await _deleteGroupCommand.Execute(id);
     }
-    public async Task EditGroupDb(Group addingGroup)
+    public async Task EditGroupDb(Group group)
     {
-        await _addGroupCommand.Execute(addingGroup);
+        await _updateGroupCommand.Execute(group);
     }
 
 
