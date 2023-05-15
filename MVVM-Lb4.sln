@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVM-Lb4.Domain", "MVVM-Lb4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM_Lb4.EF", "MVVM_Lb4.EF\MVVM_Lb4.EF.csproj", "{1664890C-D804-4958-AED4-8B69C16255E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM-Lb4.Json", "MVVM-Lb4.Json\MVVM-Lb4.Json.csproj", "{879943B8-4376-4ADC-B040-117477D231C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1664890C-D804-4958-AED4-8B69C16255E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1664890C-D804-4958-AED4-8B69C16255E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1664890C-D804-4958-AED4-8B69C16255E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{879943B8-4376-4ADC-B040-117477D231C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879943B8-4376-4ADC-B040-117477D231C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879943B8-4376-4ADC-B040-117477D231C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879943B8-4376-4ADC-B040-117477D231C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

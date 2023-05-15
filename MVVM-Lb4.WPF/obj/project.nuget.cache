@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mkQJHt1nVMplrG7hggxNnI3Q8unW4IubcUduSd7kww/g1gcDqlgqZY8DN/dAT/TNeYgnnf9mPAh/XzCGhqGhKQ==",
+  "dgSpecHash": "F+quOIyFQEFaQuD5mT9ERasmKzYSFV9nX31lq7xVCjBmdJRnwR3pDZ0kW9FylgO5xrTZ2nBq1F400srF1Jjj0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\MVVM-Lb4\\MVVM-Lb4.WPF\\MVVM-Lb4.WPF.csproj",
   "expectedPackageFiles": [
@@ -45,7 +45,7 @@
     "C:\\Users\\Dimchik\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\7.0.0\\microsoft.extensions.options.configurationextensions.7.0.0.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
-    "C:\\Users\\Dimchik\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Dimchik\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.4\\sqlitepclraw.bundle_e_sqlite3.2.1.4.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\sqlitepclraw.core\\2.1.4\\sqlitepclraw.core.2.1.4.nupkg.sha512",
     "C:\\Users\\Dimchik\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.4\\sqlitepclraw.lib.e_sqlite3.2.1.4.nupkg.sha512",

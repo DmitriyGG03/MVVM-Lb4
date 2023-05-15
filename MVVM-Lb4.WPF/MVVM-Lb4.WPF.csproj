@@ -19,11 +19,18 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MVVM-Lb4.Domain\MVVM-Lb4.Domain.csproj" />
+      <ProjectReference Include="..\MVVM-Lb4.Json\MVVM-Lb4.Json.csproj" />
       <ProjectReference Include="..\MVVM_Lb4.EF\MVVM_Lb4.EF.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="groups.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="students.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

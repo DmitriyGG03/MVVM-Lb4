@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,6 +18,9 @@ using MVVM_Lb4.EF.Commands.AddCommands;
 using MVVM_Lb4.EF.Commands.DeleteCommands;
 using MVVM_Lb4.EF.Commands.UpdateCommands;
 using MVVM_Lb4.EF.Queries;
+using MVVM_Lb4.Json.Commands.AddCommands;
+using MVVM_Lb4.Json.Commands.DeleteCommands;
+using MVVM_Lb4.Json.Commands.UpdateCommands;
 using MVVM_Lb4.Stores;
 using MVVM_Lb4.ViewModels;
 using MVVM_Lb4.Views.Windows.Main;
@@ -40,13 +44,29 @@ namespace MVVM_Lb4
                 {
                     services.AddSingleton<GroupsStoreController>();
                     
-                    services.AddSingleton<IGetCollectionQuery<Group>, GetAllGroupsQuery>();
-                    services.AddSingleton<IGetCollectionQuery<Student>, GetAllStudentsInGroupQuery>();
+                    #region DbSaving
                     
-                    services.AddTransient<IAddCommand<Group>, AddGroupDbCommand>();
-                    services.AddTransient<IAddCommand<Student>, AddStudentDbCommand>();
-                    services.AddTransient<IDeleteCommand<Group>, DeleteGroupCommand>();
-                    services.AddTransient<IUpdateCommand<Group>, UpdateGroupCommand>();
+                    // services.AddSingleton<IGetCollectionQuery<Group>, GetAllGroupsQuery>();
+                    // services.AddSingleton<IGetCollectionQuery<Student>, GetAllStudentsInGroupQuery>();
+                    //
+                    // services.AddTransient<IAddCommand<Group>, AddGroupDbCommand>();
+                    // services.AddTransient<IAddCommand<Student>, AddStudentDbCommand>();
+                    // services.AddTransient<IDeleteCommand<Group>, DeleteGroupCommand>();
+                    // services.AddTransient<IUpdateCommand<Group>, UpdateGroupCommand>();
+                    
+                    #endregion
+                    
+                    #region JsonSaving
+                    
+                    services.AddSingleton<IGetCollectionQuery<Group>, GetAllGroupsQueryJson>();
+                    services.AddSingleton<IGetCollectionQuery<Student>, GetAllStudentsInGroupQueryJson>();
+                    
+                    services.AddTransient<IAddCommand<Group>, AddGroupCommandJson>();
+                    services.AddTransient<IAddCommand<Student>, AddStudentCommandJson>();
+                    services.AddTransient<IDeleteCommand<Group>, DeleteGroupCommandJson>();
+                    services.AddTransient<IUpdateCommand<Group>, UpdateGroupCommandJson>();
+                    
+                    #endregion
 
                     services.AddSingleton<GroupsViewModel>();
                     services.AddSingleton<MainWindowViewModel>();
@@ -68,6 +88,9 @@ namespace MVVM_Lb4
             using(ApplicationDbContext context = groupsDbContextFactory.Create())
             {
                 context.Database.Migrate();
+
+                File.Create("groups.json");
+                File.Create("students.json");
             }
 
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
