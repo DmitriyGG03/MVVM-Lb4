@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,8 +17,8 @@ public class GroupsStoreController
 
     private readonly IAddCommand<Group> _addGroupCommand;
     private readonly IAddCommand<Student> _addStudentCommand;
-    private readonly IAddCommand<Group> _deleteGroupCommand;
-    private readonly IAddCommand<Student> _deleteStudentCommand;
+    private readonly IDeleteCommand<Group> _deleteGroupCommand;
+    private readonly IDeleteCommand<Student> _deleteStudentCommand;
 
     #region Commands
 
@@ -51,8 +52,8 @@ public class GroupsStoreController
         IGetCollectionQuery<Student> getStudentsCollection,
         IAddCommand<Group> addGroupCommand,
         IAddCommand<Student> addStudentCommand,
-        IAddCommand<Group> deleteGroupCommand,
-        IAddCommand<Student> deleteStudentCommand
+        IDeleteCommand<Group> deleteGroupCommand,
+        IDeleteCommand<Student> deleteStudentCommand
     )
     {
         _getGroupsCollection = getGroupsCollection;
@@ -87,6 +88,16 @@ public class GroupsStoreController
     {
         await _addStudentCommand.Execute(addingStudent);
     }
+    
+    public async Task DeleteGroupFromDb(Guid id)
+    {
+        await _deleteGroupCommand.Execute(id);
+    }
+    public async Task EditGroupDb(Group addingGroup)
+    {
+        await _addGroupCommand.Execute(addingGroup);
+    }
+
 
     // public async Task Update(Group youTubeViewer)
     // {
