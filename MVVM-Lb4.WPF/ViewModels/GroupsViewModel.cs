@@ -1,12 +1,5 @@
-using System.Windows;
-using System.Windows.Input;
-using Microsoft.EntityFrameworkCore;
-using MVVM_Lb4.Commands;
-using MVVM_Lb4.Domain.Models;
 using MVVM_Lb4.Stores;
 using MVVM_Lb4.ViewModels.Base;
-using MVVM_Lb4.Views.DialogWindows;
-using YouTubeViewers.WPF.Commands;
 
 namespace MVVM_Lb4.ViewModels;
 

@@ -1,7 +1,7 @@
 using System;
 using MVVM_Lb4.Commands.Base;
 
-namespace MVVM_Lb4.Infrastructure.Commands;
+namespace MVVM_Lb4.Commands;
 
 internal class LambdaCommand : CommandBase
 {

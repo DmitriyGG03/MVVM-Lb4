@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using MVVM_Lb4.Domain.Models.Base;
 
 namespace MVVM_Lb4.Domain.Models;

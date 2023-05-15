@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
-using System.Collections.Specialized;
 using MVVM_Lb4.Commands;
 using MVVM_Lb4.Domain.Models;
 using MVVM_Lb4.Stores;
 using MVVM_Lb4.ViewModels.Base;
-using YouTubeViewers.WPF.Commands;
 
 namespace MVVM_Lb4.ViewModels
 {
@@ -30,6 +23,11 @@ namespace MVVM_Lb4.ViewModels
         
         #endregion
         
+        #region Params
+        
+        private GroupsStoreController _groupsStore { get; }
+        private GroupsViewModel _groupsViewModel { get; }
+        
         #region SelectedGroup
 
         private Group? _selectedGroup = null;
@@ -45,6 +43,10 @@ namespace MVVM_Lb4.ViewModels
                 _groupsViewModel.GroupsStudentsViewModel.GetStudentsList();
             }
         }
+        
+        #endregion
+        
+        #region GroupIsSelected
         
         private bool _groupIsSelected = false;
         public bool GroupIsSelected
@@ -67,13 +69,15 @@ namespace MVVM_Lb4.ViewModels
 
         #endregion
 
-        private GroupsStoreController _groupsStore { get; }
-        private GroupsViewModel _groupsViewModel { get; }
-        
+        #endregion
+
+        #region Commands
         
         public ICommand AddGroupCommand { get; }
         public ICommand DeleteGroupCommand { get; }
         public ICommand EditGroupCommand { get; }
+        
+        #endregion
 
         public GroupsListingViewModel(GroupsViewModel groupsViewModel, GroupsStoreController groupsStore)
         {

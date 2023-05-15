@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.EntityFrameworkCore;
 using MVVM_Lb4.Commands.Base;
 using MVVM_Lb4.Domain.Models;
 using MVVM_Lb4.Stores;

@@ -1,8 +1,6 @@
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MVVM_Lb4.Commands.Base;
-using MVVM_Lb4.Domain.Models;
 using MVVM_Lb4.Stores;
 using MVVM_Lb4.ViewModels;
 using MVVM_Lb4.Views.DialogWindows;

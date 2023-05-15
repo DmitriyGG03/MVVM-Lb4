@@ -1,4 +1,3 @@
-using System;
 using System.Windows;
 using MVVM_Lb4.Commands.Base;
 using MVVM_Lb4.Views.DialogWindows;

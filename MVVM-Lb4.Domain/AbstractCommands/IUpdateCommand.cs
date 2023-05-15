@@ -1,5 +1,4 @@
-﻿
-namespace MVVM_Lb4.Domain.AbstractCommands
+﻿namespace MVVM_Lb4.Domain.AbstractCommands
 {
     public interface IUpdateCommand<T>
     {

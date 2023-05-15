@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using MVVM_Lb4.Domain.AbstractCommands;
 using MVVM_Lb4.Domain.AbstractQueries;
 using MVVM_Lb4.Domain.Models;
@@ -20,33 +19,8 @@ public class GroupsStoreController
     private readonly IDeleteCommand<Group> _deleteGroupCommand;
     private readonly IUpdateCommand<Group> _updateGroupCommand;
 
-    #region Commands
-
-    private ICommand LoadStudentsCommand { get; }
-
-    #endregion Commands
-
     #endregion DatabaseInteractions
 
-    // #region Events
-    //
-    // public event Action GroupsLoaded;
-    // public event Action StudentsLoaded;
-    // public event Action<Group> GroupAddedToDb;
-    // public event Action<Student> StudentAddedToDb;
-    // public event Action<Group> YouTubeViewerUpdated;
-    // public event Action<Guid> YouTubeViewerDeleted;
-    //
-    // #endregion
-
-    
-
-
-    /// <summary>
-    /// Instantiate values and load data from db
-    /// </summary>
-    /// <param name="getGroupsCollection">Request to db from host</param>
-    /// <param name="getStudentsCollection">Request to db from host</param>
     public GroupsStoreController(
         IGetCollectionQuery<Group> getGroupsCollection,
         IGetCollectionQuery<Student> getStudentsCollection,
@@ -63,13 +37,11 @@ public class GroupsStoreController
         _addStudentCommand = addStudentCommand;
         _deleteGroupCommand = deleteGroupCommand;
         _updateGroupCommand = updateGroupCommand;
-
-        //_groupsViewModel = groupsViewModel;
     }
 
     public async Task<List<Group>> LoadGroups()
     {
-        return await _getGroupsCollection.Execute(); /* TestGroupGeneration();*/
+        return await _getGroupsCollection.Execute(); 
     }
 
     public async Task<List<Student>> LoadStudents(Group? selectedGroup)
@@ -97,32 +69,4 @@ public class GroupsStoreController
     {
         await _updateGroupCommand.Execute(group);
     }
-
-
-    // public async Task Update(Group youTubeViewer)
-    // {
-    //     await _updateYouTubeViewerCommand.Execute(youTubeViewer);
-    //
-    //     int currentIndex = _youTubeViewers.FindIndex(y => y.Id == youTubeViewer.Id);
-    //
-    //     if (currentIndex != -1)
-    //     {
-    //         _youTubeViewers[currentIndex] = youTubeViewer;
-    //     }
-    //     else
-    //     {
-    //         _youTubeViewers.Add(youTubeViewer);
-    //     }
-    //
-    //     YouTubeViewerUpdated?.Invoke(youTubeViewer);
-    // }
-    //
-    // public async Task Delete(Guid id)
-    // {
-    //     await _deleteYouTubeViewerCommand.Execute(id);
-    //
-    //     _youTubeViewers.RemoveAll(y => y.Id == id);
-    //
-    //     YouTubeViewerDeleted?.Invoke(id);
-    // }
 }
