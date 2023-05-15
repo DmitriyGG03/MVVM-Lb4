@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\App.xaml
 7-82343693
 
-272000793693
+2562203637
 245-562804227
 Components\GroupsListing.xaml;Components\GroupsStudents.xaml;Views\DialogWindows\AddGroupWindow.xaml;Views\DialogWindows\AddStudentWindow.xaml;Views\DialogWindows\ConfirmOperationWindow.xaml;Views\Windows\GroupsView.xaml;Views\Windows\Main\MainWindow.xaml;
 
-True
+False
 

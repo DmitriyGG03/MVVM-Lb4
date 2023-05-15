@@ -1,27 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Input;
-using Microsoft.EntityFrameworkCore;
-using MVVM_Lb4.Commands;
 using MVVM_Lb4.Domain.AbstractCommands;
 using MVVM_Lb4.Domain.AbstractQueries;
 using MVVM_Lb4.Domain.Models;
-using MVVM_Lb4.Domain.Models.Base;
-using MVVM_Lb4.EF;
-using MVVM_Lb4.EF.Commands.AddCommands;
-using MVVM_Lb4.Stores.Base;
-using MVVM_Lb4.ViewModels;
-using YouTubeViewers.WPF.Commands;
 
 namespace MVVM_Lb4.Stores;
 
-public class GroupsStoreController : StoreControllerBase
+public class GroupsStoreController
 {
     #region DatabaseInteractions
 
@@ -52,21 +38,7 @@ public class GroupsStoreController : StoreControllerBase
     //
     // #endregion
 
-    #region SelectedItems
-
-    private Group? _selectedGroup = null;
-
-    public Group? SelectedGroup
-    {
-        get => _selectedGroup;
-        set
-        {
-            Set(ref _selectedGroup, value);
-            LoadStudentsCommand.Execute(null);
-        }
-    }
-
-    #endregion
+    
 
 
     /// <summary>
@@ -86,8 +58,6 @@ public class GroupsStoreController : StoreControllerBase
         _getGroupsCollection = getGroupsCollection;
         _getStudentsCollection = getStudentsCollection;
 
-        LoadStudentsCommand = new LoadStudentsCommand(this);
-
         _addGroupCommand = addGroupCommand;
         _addStudentCommand = addStudentCommand;
         _deleteGroupCommand = deleteGroupCommand;
@@ -101,18 +71,16 @@ public class GroupsStoreController : StoreControllerBase
         return await _getGroupsCollection.Execute(); /* TestGroupGeneration();*/
     }
 
-    public async Task<List<Student>> LoadStudents()
+    public async Task<List<Student>> LoadStudents(Group? selectedGroup)
     {
-        if (SelectedGroup is null) return new List<Student>(0);
+        if (selectedGroup is null) return new List<Student>(0);
 
-        return await _getStudentsCollection.Execute(SelectedGroup);
+        return await _getStudentsCollection.Execute(selectedGroup);
     }
 
     public async Task AddGroupToDb(Group addingGroup)
     {
         await _addGroupCommand.Execute(addingGroup);
-
-        //await Task.Run(() => GroupsView.Add(addingGroup));
     }
 
     public async Task AddStudentToDb(Student addingStudent)
@@ -146,24 +114,4 @@ public class GroupsStoreController : StoreControllerBase
     //
     //     YouTubeViewerDeleted?.Invoke(id);
     // }
-
-    private List<Group> TestGroupGeneration()
-    {
-        List<Group> groups = Enumerable.Range(1, 10).Select(i =>
-            new Group() { GroupName = $"Group {i++}" }).ToList();
-
-        //ObservableCollection<Group> obGroup = new ObservableCollection<Group>(groups);
-        var studentNumber = 1;
-
-        //IList<Student> students = Enumerable.Range(0, 9).Select(i => new Student()
-        //{
-        //    Name = $"Student name {studentNumber}",
-        //    LastName = $"Student last name {studentNumber}",
-        //    Patronymic = $"Student patronymic {studentNumber++}",
-        //    CourseNumber = 1,
-        //    Group = groups[i]
-        //}).ToList();
-
-        return groups;
-    }
 }

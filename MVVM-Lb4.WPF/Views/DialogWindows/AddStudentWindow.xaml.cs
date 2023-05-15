@@ -21,11 +21,11 @@ namespace MVVM_Lb4.Views.DialogWindows
 	/// </summary>
 	public partial class AddStudentWindow : Window
 	{
-		internal AddStudentWindow(GroupsViewModel groupsViewModel)
+		internal AddStudentWindow(GroupsStudentsViewModel groupsStudentsViewModel)
 		{
 			InitializeComponent();
 
-			DataContext = groupsViewModel;
+			DataContext = groupsStudentsViewModel;
 		}
 
 		private void Accept_Click(object sender, RoutedEventArgs e) // Of course, better way is to create a new command, but this way is easier

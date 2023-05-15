@@ -32,48 +32,23 @@
 
 
         <Grid Name="GroupListGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" MinWidth="250"/>
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
 
-            <Button
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    AutomationProperties.AutomationId="CreateNewGroupButton"
-                    Command="{Binding AddGroupCommand}"
-                    Content="Create a new group"
-                    FontSize="16" />
-
-            <Button
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    AutomationProperties.AutomationId="AddStudentButton"
-                    Command="{Binding AddStudentCommand}"
-                    IsEnabled="{Binding GroupIsSelected}"
-                    Content="Add student into the group"
-                    FontSize="16" />
-            <!-- Add binding to IsEnabled field in the button -->
-
             <components1:GroupsListing
-                    Grid.Row="1"
                     Grid.Column="0"
                     DataContext="{Binding GroupsListingViewModel}"/>
 
-            <components1:GroupsStudents                    
-                    Grid.Row="1"
+            <components1:GroupsStudents   
                     Grid.Column="1"
                     DataContext="{Binding GroupsStudentsViewModel}"/>
 
             <GridSplitter 
                     Grid.Row="0"
                     Grid.Column="0"
-                    Grid.RowSpan="2"
                     HorizontalAlignment="Right"
                     Width="2"/>
 

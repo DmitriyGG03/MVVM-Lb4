@@ -9,8 +9,22 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Button
+            Grid.Row="0"
+            AutomationProperties.AutomationId="AddStudentButton"
+            Command="{Binding AddStudentCommand}"
+            IsEnabled="{Binding GroupIsSelected}"
+            Content="Add student into the group"
+            FontSize="16" />
+        
         <GroupBox
-            Header="{Binding SelectedGroupFullName, FallbackValue='Students', TargetNullValue= 'Group not selected'}"
+            Grid.Row="1"
+            Header="{Binding SelectedGroupName, FallbackValue='Students', TargetNullValue= 'Group not selected'}"
             Margin="5,5,5,5" 
             SnapsToDevicePixels="true">
             <DataGrid ItemsSource="{Binding StudentsView}"

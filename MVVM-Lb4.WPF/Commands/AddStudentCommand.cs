@@ -16,35 +16,39 @@ namespace MVVM_Lb4.Commands;
 public class AddStudentCommand : AsyncCommandBase
 {
     private readonly GroupsStoreController _store;
-    private readonly GroupsViewModel _groupsViewModel;
+    private readonly GroupsStudentsViewModel _groupsStudentsViewModel;
     
     public AddStudentCommand(
         GroupsStoreController grStore,  
-        GroupsViewModel groupsViewModel)
+        GroupsStudentsViewModel groupsStudentsViewModel)
     {
         _store = grStore;
-        _groupsViewModel = groupsViewModel;
+        _groupsStudentsViewModel = groupsStudentsViewModel;
     }
 
     public override async Task ExecuteAsync(object parameter)
     {
-        AddStudentWindow addGroupWindow = new AddStudentWindow(_groupsViewModel);
+        AddStudentWindow addGroupWindow = new AddStudentWindow(_groupsStudentsViewModel);
         
         if ((bool)addGroupWindow.ShowDialog()!)
         {
             //TODO: It is good to review code below
-            if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredStudentName, "Student name")) return;
-            if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredStudentSurname, "Student surname")) return;
-            if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredStudentPatronymic, "Student patronymic")) return;
+            if (!ValidateStringSyntaxEnteredData(_groupsStudentsViewModel.EnteredStudentName, "Student name")) return;
+            if (!ValidateStringSyntaxEnteredData(_groupsStudentsViewModel.EnteredStudentSurname, "Student surname")) return;
+            if (!ValidateStringSyntaxEnteredData(_groupsStudentsViewModel.EnteredStudentPatronymic, "Student patronymic")) return;
 
             await _store.AddStudentToDb(new Student(
-                _groupsViewModel.EnteredStudentName,
-                _groupsViewModel.EnteredStudentSurname,
-                _groupsViewModel.EnteredStudentPatronymic,
-                byte.Parse(_groupsViewModel.EnteredStudentCourse)) {GroupId = _store.SelectedGroup!.GroupId});
+                _groupsStudentsViewModel.EnteredStudentName,
+                _groupsStudentsViewModel.EnteredStudentSurname,
+                _groupsStudentsViewModel.EnteredStudentPatronymic,
+                byte.Parse(_groupsStudentsViewModel.EnteredStudentCourse))
+            {
+                GroupId = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup!.GroupId
+            });
 
-            MessageBox.Show($"A student called {_groupsViewModel.EnteredStudentName} has been successfully created", "Success action", 
+            MessageBox.Show($"A student called {_groupsStudentsViewModel.EnteredStudentName} has been successfully created", "Success action", 
                 MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
         else
         {

@@ -17,35 +17,35 @@ namespace MVVM_Lb4.Commands;
 public class AddGroupCommand : AsyncCommandBase
 {
     private readonly GroupsStoreController _store;
-    private readonly GroupsViewModel _groupsViewModel;
-    
+    private readonly GroupsListingViewModel _groupsListingViewModel;
+
     public AddGroupCommand(
-        GroupsStoreController grStore, 
-        GroupsViewModel groupsViewModel)
+        GroupsStoreController grStore,
+        GroupsListingViewModel groupsListingViewModel)
     {
         _store = grStore;
-        _groupsViewModel = groupsViewModel;
+        _groupsListingViewModel = groupsListingViewModel;
     }
 
     public override async Task ExecuteAsync(object parameter)
     {
-        AddGroupWindow addGroupWindow = new AddGroupWindow(_groupsViewModel);
+        AddGroupWindow addGroupWindow = new AddGroupWindow(_groupsListingViewModel);
             
         if ((bool)addGroupWindow.ShowDialog()!)
         {
-            if (!ValidateStringSyntaxEnteredData(_groupsViewModel.EnteredGroupName, "Group name")) return;
+            if (!ValidateStringSyntaxEnteredData(_groupsListingViewModel.EnteredGroupName, "Group name")) return;
 
-            if (_groupsViewModel.GroupsListingViewModel.GroupsView.Any(g => g.GroupName.Equals(_groupsViewModel.EnteredGroupName)))
+            if (_groupsListingViewModel.GroupsView.Any(g => g.GroupName.Equals(_groupsListingViewModel.EnteredGroupName)))
             {
                 MessageBox.Show("A group with the same name already exists!", "Group name error", 
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                await _store.AddGroupToDb(new Group(_groupsViewModel.EnteredGroupName));
-                _groupsViewModel.GroupsListingViewModel.LoadGroups();
+                await _store.AddGroupToDb(new Group(_groupsListingViewModel.EnteredGroupName));
+                _groupsListingViewModel.LoadGroups();
 
-                MessageBox.Show($"A group called {_groupsViewModel.EnteredGroupName} has been successfully created", "Success action", 
+                MessageBox.Show($"A group called {_groupsListingViewModel.EnteredGroupName} has been successfully created", "Success action", 
                     MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

@@ -10,11 +10,15 @@ using MVVM_Lb4.Commands;
 using MVVM_Lb4.Domain.Models;
 using MVVM_Lb4.Stores;
 using MVVM_Lb4.ViewModels.Base;
+using YouTubeViewers.WPF.Commands;
 
 namespace MVVM_Lb4.ViewModels
 {
     public class GroupsListingViewModel : ViewModel
     {
+        
+        #region ViewGroupList
+        
         private List<Group> _groupsView =
             new List<Group>();
 
@@ -23,24 +27,51 @@ namespace MVVM_Lb4.ViewModels
             get => _groupsView;
             set => Set(ref _groupsView, value);
         }
+        
+        #endregion
+        
+        #region SelectedGroup
 
-        private GroupsStoreController _groupsStore { get; }
-        private GroupsViewModel _groupsViewModel { get; }
+        private Group? _selectedGroup = null;
 
         public Group? SelectedGroup
         {
+            get => _selectedGroup;
             set
             {
-                _groupsStore.SelectedGroup = value;
+                Set(ref _selectedGroup, value);
+                _groupsViewModel.GroupsStudentsViewModel.GroupIsSelected = true;
+                GroupIsSelected = true;
                 _groupsViewModel.GroupsStudentsViewModel.GetStudentsList();
-
-                if (value is not null)
-                    _groupsViewModel.GroupIsSelected = true;
-                
-                else _groupsViewModel.GroupIsSelected = false;
             }
         }
+        
+        private bool _groupIsSelected = false;
+        public bool GroupIsSelected
+        {
+            get => _groupIsSelected; 
+            set => Set(ref _groupIsSelected, value); 
+        }
 
+        #endregion
+        
+        #region AddGroup
+
+        private string _enteredGroupName = "";
+
+        public string EnteredGroupName
+        {
+            get => _enteredGroupName;
+            set => Set(ref _enteredGroupName, value);
+        }
+
+        #endregion
+
+        private GroupsStoreController _groupsStore { get; }
+        private GroupsViewModel _groupsViewModel { get; }
+        
+        
+        public ICommand AddGroupCommand { get; }
         public ICommand DeleteGroupCommand { get; }
         public ICommand EditGroupCommand { get; }
 
@@ -51,6 +82,7 @@ namespace MVVM_Lb4.ViewModels
 
             LoadGroups();
 
+            AddGroupCommand = new AddGroupCommand(groupsStore, this);
             DeleteGroupCommand = new DeleteGroupCommand();
             EditGroupCommand = new EditGroupCommand();
         }
