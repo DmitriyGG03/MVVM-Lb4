@@ -45,10 +45,10 @@ public class AddStudentCommand : AsyncCommandBase
             {
                 GroupId = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup!.GroupId
             });
+            _groupsStudentsViewModel.GetStudentsList();
 
             MessageBox.Show($"A student called {_groupsStudentsViewModel.EnteredStudentName} has been successfully created", "Success action", 
                 MessageBoxButton.OK, MessageBoxImage.Information);
-            
         }
         else
         {
