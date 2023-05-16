@@ -21,7 +21,7 @@ using MVVM_Lb4.EF.Queries;
 using MVVM_Lb4.Json.Commands.AddCommands;
 using MVVM_Lb4.Json.Commands.DeleteCommands;
 using MVVM_Lb4.Json.Commands.UpdateCommands;
-using MVVM_Lb4.Stores;
+using MVVM_Lb4.StoresControllers;
 using MVVM_Lb4.ViewModels;
 using MVVM_Lb4.Views.Windows.Main;
 using YouTubeViewers.WPF.HostBuilders;

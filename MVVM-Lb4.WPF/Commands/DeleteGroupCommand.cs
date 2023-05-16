@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using MVVM_Lb4.Commands.Base;
-using MVVM_Lb4.Stores;
+using MVVM_Lb4.StoresControllers;
 using MVVM_Lb4.ViewModels;
 using MVVM_Lb4.Views.DialogWindows;
 
@@ -26,13 +26,14 @@ public class DeleteGroupCommand : AsyncCommandBase
 
         if ((bool)addGroupWindow.ShowDialog()!)
         {
-            await _store.DeleteGroupFromDb(_groupsListingViewModel.SelectedGroup.GroupId);
+            await _store.DeleteGroupFromDbAsync(_groupsListingViewModel.SelectedGroup.GroupId);
 
-            MessageBox.Show($"A group called {_groupsListingViewModel.EnteredGroupName} has been successfully deleted",
+            MessageBox.Show($"A group called {_groupsListingViewModel.UiGroup.GroupName} has been successfully deleted",
                 "Success action",
                 MessageBoxButton.OK, MessageBoxImage.Information);
             
             _groupsListingViewModel.LoadGroups();
+            _groupsListingViewModel.SelectedGroup = null;
         }
     }
 }

@@ -2,7 +2,8 @@
 using System.Windows.Input;
 using MVVM_Lb4.Commands;
 using MVVM_Lb4.Domain.Models;
-using MVVM_Lb4.Stores;
+using MVVM_Lb4.StoresControllers;
+using MVVM_Lb4.UIModels;
 using MVVM_Lb4.ViewModels.Base;
 
 namespace MVVM_Lb4.ViewModels;
@@ -23,36 +24,14 @@ public class GroupsStudentsViewModel : ViewModel
 
     #endregion
 
-    #region AddStudent
+    #region UiStudentEnteringData
 
-    private string _enteredStudentName = "";
-    private string _enteredStudentSurname = "";
-    private string _enteredStudentPatronymic = "";
-    private string _enteredStudentCourse = "";
+    private UIStudent _uiStudent = new();
 
-
-    public string EnteredStudentName
+    public UIStudent UiStudent
     {
-        get => _enteredStudentName;
-        set => Set(ref _enteredStudentName, value);
-    }
-
-    public string EnteredStudentSurname
-    {
-        get => _enteredStudentSurname;
-        set => Set(ref _enteredStudentSurname, value);
-    }
-
-    public string EnteredStudentPatronymic
-    {
-        get => _enteredStudentPatronymic;
-        set => Set(ref _enteredStudentPatronymic, value);
-    }
-
-    public string EnteredStudentCourse
-    {
-        get => _enteredStudentCourse;
-        set => Set(ref _enteredStudentCourse, value);
+        get => _uiStudent;
+        set => Set(ref _uiStudent, value);
     }
 
     #endregion
@@ -92,6 +71,6 @@ public class GroupsStudentsViewModel : ViewModel
 
     public async void GetStudentsList()
     {
-        StudentsView = await GroupsStore.LoadStudents(GroupsViewModel.GroupsListingViewModel.SelectedGroup);
+        StudentsView = await GroupsStore.LoadStudentsAsync(GroupsViewModel.GroupsListingViewModel.SelectedGroup);
     }
 }

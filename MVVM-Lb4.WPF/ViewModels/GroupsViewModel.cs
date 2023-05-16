@@ -1,4 +1,4 @@
-using MVVM_Lb4.Stores;
+using MVVM_Lb4.StoresControllers;
 using MVVM_Lb4.ViewModels.Base;
 
 namespace MVVM_Lb4.ViewModels;

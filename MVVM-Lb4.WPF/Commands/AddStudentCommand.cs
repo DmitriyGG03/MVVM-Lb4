@@ -1,8 +1,11 @@
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MVVM_Lb4.Commands.Base;
 using MVVM_Lb4.Domain.Models;
-using MVVM_Lb4.Stores;
+using MVVM_Lb4.StoresControllers;
+using MVVM_Lb4.UIModels;
+using MVVM_Lb4.UIModels.Abstract;
 using MVVM_Lb4.ViewModels;
 using MVVM_Lb4.Views.DialogWindows;
 
@@ -16,9 +19,9 @@ public class AddStudentCommand : AsyncCommandBase
 {
     private readonly GroupsStoreController _store;
     private readonly GroupsStudentsViewModel _groupsStudentsViewModel;
-    
+
     public AddStudentCommand(
-        GroupsStoreController grStore,  
+        GroupsStoreController grStore,
         GroupsStudentsViewModel groupsStudentsViewModel)
     {
         _store = grStore;
@@ -27,33 +30,27 @@ public class AddStudentCommand : AsyncCommandBase
 
     public override async Task ExecuteAsync(object parameter)
     {
+        _groupsStudentsViewModel.UiStudent = new UIStudent();
         AddStudentWindow addGroupWindow = new AddStudentWindow(_groupsStudentsViewModel);
-        
+
         if ((bool)addGroupWindow.ShowDialog()!)
         {
-            //TODO: It is good to review code below
-            if (!ValidateStringSyntaxEnteredData(_groupsStudentsViewModel.EnteredStudentName, "Student name")) return;
-            if (!ValidateStringSyntaxEnteredData(_groupsStudentsViewModel.EnteredStudentSurname, "Student surname")) return;
-            if (!ValidateStringSyntaxEnteredData(_groupsStudentsViewModel.EnteredStudentPatronymic, "Student patronymic")) return;
+            UIValidator uiValidator = new UIValidator();
+            if (!await uiValidator.IsValidateStudentUIParamsSuccessAsync(_groupsStudentsViewModel.UiStudent)) return;
 
-            await _store.AddStudentToDb(new Student(
-                _groupsStudentsViewModel.EnteredStudentName,
-                _groupsStudentsViewModel.EnteredStudentSurname,
-                _groupsStudentsViewModel.EnteredStudentPatronymic,
-                byte.Parse(_groupsStudentsViewModel.EnteredStudentCourse))
+            await _store.AddStudentToDbAsync(new Student(
+                _groupsStudentsViewModel.UiStudent.Name,
+                _groupsStudentsViewModel.UiStudent.LastName,
+                _groupsStudentsViewModel.UiStudent.Patronymic,
+                _groupsStudentsViewModel.UiStudent.CourseNumber)
             {
                 GroupId = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup!.GroupId,
                 Group = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup
             });
             _groupsStudentsViewModel.GetStudentsList();
 
-            MessageBox.Show($"A student called {_groupsStudentsViewModel.EnteredStudentName} has been successfully created", "Success action", 
-                MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        else
-        {
-            MessageBox.Show("You must enter data in order to create a new student!", "Data error", 
-                MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show($"A student called {_groupsStudentsViewModel.UiStudent.Name} has been successfully created",
+                "Success action", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

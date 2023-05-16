@@ -2,7 +2,8 @@
 using System.Windows.Input;
 using MVVM_Lb4.Commands;
 using MVVM_Lb4.Domain.Models;
-using MVVM_Lb4.Stores;
+using MVVM_Lb4.StoresControllers;
+using MVVM_Lb4.UIModels;
 using MVVM_Lb4.ViewModels.Base;
 
 namespace MVVM_Lb4.ViewModels
@@ -38,8 +39,11 @@ namespace MVVM_Lb4.ViewModels
             set
             {
                 Set(ref _selectedGroup, value);
-                _groupsViewModel.GroupsStudentsViewModel.GroupIsSelected = true;
-                GroupIsSelected = true;
+                bool isSelected = _selectedGroup is not null;
+                
+                _groupsViewModel.GroupsStudentsViewModel.GroupIsSelected = isSelected;
+                GroupIsSelected = isSelected;
+                
                 _groupsViewModel.GroupsStudentsViewModel.GetStudentsList();
             }
         }
@@ -59,12 +63,12 @@ namespace MVVM_Lb4.ViewModels
         
         #region AddGroup
 
-        private string _enteredGroupName = "";
+        private UIGroup _uiGroup = new();
 
-        public string EnteredGroupName
+        public UIGroup UiGroup
         {
-            get => _enteredGroupName;
-            set => Set(ref _enteredGroupName, value);
+            get => _uiGroup;
+            set => Set(ref _uiGroup, value);
         }
 
         #endregion
@@ -93,7 +97,7 @@ namespace MVVM_Lb4.ViewModels
 
         public async void LoadGroups()
         {
-            GroupsView = await _groupsStore.LoadGroups();
+            GroupsView = await _groupsStore.LoadGroupsAsync();
         }
     }
 }

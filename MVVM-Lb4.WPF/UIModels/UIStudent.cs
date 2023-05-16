@@ -1,8 +1,9 @@
 using System;
+using MVVM_Lb4.Domain.Models.Base;
 
 namespace MVVM_Lb4.UIModels;
 
-public class UIStudent
+public class UIStudent : ModelBase
 {
     public Guid StudentId { get; set; }
     public string Name { get; set; }

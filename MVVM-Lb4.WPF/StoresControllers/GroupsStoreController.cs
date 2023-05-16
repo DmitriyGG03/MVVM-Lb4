@@ -5,7 +5,7 @@ using MVVM_Lb4.Domain.AbstractCommands;
 using MVVM_Lb4.Domain.AbstractQueries;
 using MVVM_Lb4.Domain.Models;
 
-namespace MVVM_Lb4.Stores;
+namespace MVVM_Lb4.StoresControllers;
 
 public class GroupsStoreController
 {
@@ -39,29 +39,29 @@ public class GroupsStoreController
         _updateGroupCommand = updateGroupCommand;
     }
 
-    public async Task<List<Group>> LoadGroups()
+    public async Task<List<Group>> LoadGroupsAsync()
     {
         return await _getGroupsCollection.Execute(); 
     }
 
-    public async Task<List<Student>> LoadStudents(Group? selectedGroup)
+    public async Task<List<Student>> LoadStudentsAsync(Group? selectedGroup)
     {
         if (selectedGroup is null) return new List<Student>(0);
 
         return await _getStudentsCollection.Execute(selectedGroup);
     }
 
-    public async Task AddGroupToDb(Group addingGroup)
+    public async Task AddGroupToDbAsync(Group addingGroup)
     {
         await _addGroupCommand.Execute(addingGroup);
     }
 
-    public async Task AddStudentToDb(Student addingStudent)
+    public async Task AddStudentToDbAsync(Student addingStudent)
     {
         await _addStudentCommand.Execute(addingStudent);
     }
     
-    public async Task DeleteGroupFromDb(Guid id)
+    public async Task DeleteGroupFromDbAsync(Guid id)
     {
         await _deleteGroupCommand.Execute(id);
     }

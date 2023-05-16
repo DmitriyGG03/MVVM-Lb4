@@ -11,8 +11,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock>GroupName</TextBlock>
-        <TextBox Text="{Binding EnteredGroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" MinWidth="250"/>
+        <TextBlock>Enter group name:</TextBlock>
+        <TextBox Text="{Binding Path=UiGroup.GroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" MinWidth="250"/>
 
         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,15,0,0">
             <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>

@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MVVM_Lb4.Stores;
 
 namespace MVVM_Lb4.Views.DialogWindows
 {

@@ -12,22 +12,22 @@
 
         <StackPanel Grid.Row="0" MinWidth="500" HorizontalAlignment="Left">
             <TextBlock>Enter name for new student:</TextBlock>
-            <TextBox Text="{Binding EnteredStudentName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
+            <TextBox Text="{Binding Path=UiStudent.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
             
             <Label MinHeight="30"/>
             
             <TextBlock>Enter surname for new student:</TextBlock>
-            <TextBox Text="{Binding EnteredStudentSurname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
+            <TextBox Text="{Binding Path=UiStudent.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
 
             <Label MinHeight="30"/>
 
             <TextBlock>Enter patronymic for new student:</TextBlock>
-            <TextBox Text="{Binding EnteredStudentPatronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
+            <TextBox Text="{Binding Path=UiStudent.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
 
             <Label MinHeight="30"/>
 
             <TextBlock>Enter course number for new student:</TextBlock>
-            <TextBox Text="{Binding EnteredStudentCourse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
+            <TextBox Text="{Binding Path=UiStudent.CourseNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="250"/>
         </StackPanel>
         
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,15,0,0">
