@@ -24,14 +24,14 @@ public class DeleteGroupCommandJson : JsonCommandBase, IDeleteCommand<Group>
         //Impossible situation, according to app logic
         if (groupForDeleting is null) throw new DataException("Group with received Id does not exist");
 
-        RemoveDependentStudents(id);
+        await RemoveDependentStudents(id);
 
         groups?.Remove(groupForDeleting);
 
         await File.WriteAllTextAsync(GroupFileName, JsonConvert.SerializeObject(groups));
     }
 
-    private async void RemoveDependentStudents(Guid id)
+    private async Task RemoveDependentStudents(Guid id)
     {
         //If the file does not exist, than there are no students to delete
         if (!File.Exists(StudentFileName)) return;
