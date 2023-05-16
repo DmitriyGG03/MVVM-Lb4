@@ -45,7 +45,6 @@ public class AddStudentCommand : AsyncCommandBase
                 _groupsStudentsViewModel.UiStudent.CourseNumber)
             {
                 GroupId = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup!.GroupId,
-                Group = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup
             });
             _groupsStudentsViewModel.GetStudentsList();
 

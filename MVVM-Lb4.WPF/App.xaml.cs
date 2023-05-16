@@ -27,81 +27,95 @@ using MVVM_Lb4.Views.Windows.Main;
 using YouTubeViewers.WPF.HostBuilders;
 using DeleteGroupCommand = MVVM_Lb4.EF.Commands.DeleteCommands.DeleteGroupCommand;
 
-namespace MVVM_Lb4
+namespace MVVM_Lb4;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    private readonly IHost _host;
+    
+    private const SavingType AppSavingType = SavingType.JsonFiles;
+
+    public App()
     {
-        private readonly IHost _host;
-        
-        public App()
-        {
-            _host = Host.CreateDefaultBuilder()
-                .AddDbContext()
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddSingleton<GroupsStoreController>();
-                    
-                    #region DbSaving
-                    
-                    // services.AddSingleton<IGetCollectionQuery<Group>, GetAllGroupsQuery>();
-                    // services.AddSingleton<IGetCollectionQuery<Student>, GetAllStudentsInGroupQuery>();
-                    //
-                    // services.AddTransient<IAddCommand<Group>, AddGroupDbCommand>();
-                    // services.AddTransient<IAddCommand<Student>, AddStudentDbCommand>();
-                    // services.AddTransient<IDeleteCommand<Group>, DeleteGroupCommand>();
-                    // services.AddTransient<IUpdateCommand<Group>, UpdateGroupCommand>();
-                    
-                    #endregion
-                    
-                    #region JsonSaving
-                    
-                    services.AddSingleton<IGetCollectionQuery<Group>, GetAllGroupsQueryJson>();
-                    services.AddSingleton<IGetCollectionQuery<Student>, GetAllStudentsInGroupQueryJson>();
-                    
-                    services.AddTransient<IAddCommand<Group>, AddGroupCommandJson>();
-                    services.AddTransient<IAddCommand<Student>, AddStudentCommandJson>();
-                    services.AddTransient<IDeleteCommand<Group>, DeleteGroupCommandJson>();
-                    services.AddTransient<IUpdateCommand<Group>, UpdateGroupCommandJson>();
-                    
-                    #endregion
-
-                    services.AddSingleton<GroupsViewModel>();
-                    services.AddSingleton<MainWindowViewModel>();
-
-                    services.AddSingleton<MainWindow>((services) => new MainWindow()
-                    {
-                        DataContext = services.GetRequiredService<MainWindowViewModel>()
-                    });
-                })
-                .Build();
-        }
-
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            _host.Start();
-
-            ApplicationDbContextFactory groupsDbContextFactory = 
-                _host.Services.GetRequiredService<ApplicationDbContextFactory>();
-            using(ApplicationDbContext context = groupsDbContextFactory.Create())
+        _host = Host.CreateDefaultBuilder()
+            .AddDbContext()
+            .ConfigureServices((context, services) =>
             {
-                context.Database.Migrate();
-            }
+                services.AddSingleton<GroupsStoreController>();
 
-            MainWindow = _host.Services.GetRequiredService<MainWindow>();
-            MainWindow.Show();
+                #region Saving
 
-            base.OnStartup(e);
-        }
+                services.AddSingleton<IGetCollectionQuery<Group>>(provider => 
+                    AppSavingType == SavingType.Database ? 
+                        new GetAllGroupsQuery(provider.GetRequiredService<ApplicationDbContextFactory>()) : 
+                        new GetAllGroupsQueryJson());
+                services.AddSingleton<IGetCollectionQuery<Student>>(provider => 
+                    AppSavingType == SavingType.Database ? 
+                        new GetAllStudentsInGroupQuery(provider.GetRequiredService<ApplicationDbContextFactory>()) : 
+                        new GetAllStudentsInGroupQueryJson());
 
-        protected override void OnExit(ExitEventArgs e)
+                services.AddSingleton<IAddCommand<Group>> (provider => 
+                    AppSavingType == SavingType.Database ? 
+                        new AddGroupDbCommand(provider.GetRequiredService<ApplicationDbContextFactory>()) : 
+                        new AddGroupCommandJson());
+                services.AddSingleton<IAddCommand<Student>>(provider => 
+                    AppSavingType == SavingType.Database ? 
+                        new AddStudentDbCommand(provider.GetRequiredService<ApplicationDbContextFactory>()) : 
+                        new AddStudentCommandJson());
+                services.AddSingleton<IDeleteCommand<Group>>(provider => 
+                    AppSavingType == SavingType.Database ? 
+                        new DeleteGroupCommand(provider.GetRequiredService<ApplicationDbContextFactory>()) : 
+                        new DeleteGroupCommandJson());
+                services.AddSingleton<IUpdateCommand<Group>>(provider => 
+                    AppSavingType == SavingType.Database ? 
+                        new UpdateGroupCommand(provider.GetRequiredService<ApplicationDbContextFactory>()) : 
+                        new UpdateGroupCommandJson());
+
+                #endregion
+
+                services.AddSingleton<GroupsViewModel>();
+                services.AddSingleton<MainWindowViewModel>();
+
+                services.AddSingleton<MainWindow>((services) => new MainWindow()
+                {
+                    DataContext = services.GetRequiredService<MainWindowViewModel>()
+                });
+            })
+            .Build();
+    }
+
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        _host.Start();
+
+        ApplicationDbContextFactory groupsDbContextFactory =
+            _host.Services.GetRequiredService<ApplicationDbContextFactory>();
+        using (ApplicationDbContext context = groupsDbContextFactory.Create())
         {
-            _host.StopAsync();
-            _host.Dispose();
-
-            base.OnExit(e);
+            context.Database.Migrate();
         }
+
+        MainWindow = _host.Services.GetRequiredService<MainWindow>();
+        MainWindow.Show();
+
+        base.OnStartup(e);
+    }
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        _host.StopAsync();
+        _host.Dispose();
+
+        base.OnExit(e);
+    }
+    
+    private enum SavingType
+    {
+        Database = 1,
+        JsonFiles = 2
     }
 }
+
