@@ -1,0 +1,15 @@
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\bin\Debug\net7.0\MVVM-Lb4.Json.deps.json
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\bin\Debug\net7.0\MVVM-Lb4.Json.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\bin\Debug\net7.0\MVVM-Lb4.Json.pdb
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\bin\Debug\net7.0\MVVM-Lb4.Domain.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\bin\Debug\net7.0\MVVM-Lb4.Domain.pdb
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.csproj.AssemblyReference.cache
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.AssemblyInfoInputs.cache
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.AssemblyInfo.cs
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.csproj.CoreCompileInputs.cache
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.csproj.CopyComplete
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\refint\MVVM-Lb4.Json.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\MVVM-Lb4.Json.pdb
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.Json\obj\Debug\net7.0\ref\MVVM-Lb4.Json.dll

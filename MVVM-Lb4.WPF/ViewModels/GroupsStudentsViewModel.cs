@@ -12,16 +12,17 @@ public class GroupsStudentsViewModel : ViewModel
     #region Params
 
     #region StudentsViewList
-    
+
     private List<Student> _studentsView;
+
     public List<Student> StudentsView
     {
         get => _studentsView;
         set => Set(ref _studentsView, value);
     }
-    
+
     #endregion
-    
+
     #region AddStudent
 
     private string _enteredStudentName = "";
@@ -55,30 +56,28 @@ public class GroupsStudentsViewModel : ViewModel
     }
 
     #endregion
-    
+
     private bool _groupIsSelected = false;
+
     public bool GroupIsSelected
     {
-        get => _groupIsSelected; 
-        set => Set(ref _groupIsSelected, value); 
+        get => _groupIsSelected;
+        set => Set(ref _groupIsSelected, value);
     }
 
-    public string SelectedGroupName
+    public string? SelectedGroupName
     {
-        get
-        {
-            return GroupsViewModel.GroupsListingViewModel.SelectedGroup.GroupName;
-        }
+        get => GroupsViewModel.GroupsListingViewModel.SelectedGroup?.GroupName ?? null;
     }
 
     public GroupsStoreController GroupsStore { get; }
     public GroupsViewModel GroupsViewModel { get; }
-    
-    
+
+
     #region Commands
-    
+
     public ICommand AddStudentCommand { get; }
-    
+
     #endregion
 
     #endregion Params

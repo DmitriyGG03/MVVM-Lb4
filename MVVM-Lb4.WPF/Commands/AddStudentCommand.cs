@@ -42,7 +42,8 @@ public class AddStudentCommand : AsyncCommandBase
                 _groupsStudentsViewModel.EnteredStudentPatronymic,
                 byte.Parse(_groupsStudentsViewModel.EnteredStudentCourse))
             {
-                GroupId = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup!.GroupId
+                GroupId = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup!.GroupId,
+                Group = _groupsStudentsViewModel.GroupsViewModel.GroupsListingViewModel.SelectedGroup
             });
             _groupsStudentsViewModel.GetStudentsList();
 

@@ -1,11 +1,12 @@
 using System.Data;
 using MVVM_Lb4.Domain.AbstractCommands;
 using MVVM_Lb4.Domain.Models;
+using MVVM_Lb4.Json.Commands.Abstract;
 using Newtonsoft.Json;
 
 namespace MVVM_Lb4.Json.Commands.UpdateCommands;
 
-public class UpdateStudentCommandJson : IUpdateCommand<Student>
+public class UpdateStudentCommandJson : JsonCommandBase, IUpdateCommand<Student>
 {
     public async Task Execute(Student student)
     {
@@ -15,7 +16,7 @@ public class UpdateStudentCommandJson : IUpdateCommand<Student>
 
         if (studentForUpdating is null) throw new DataException();
 
-        studentForUpdating = student;
+        students[students.IndexOf(studentForUpdating)] = student;
         
         File.WriteAllText("students.json", JsonConvert.SerializeObject(students));
     }

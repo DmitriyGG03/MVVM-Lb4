@@ -1,23 +1,23 @@
 using MVVM_Lb4.Domain.AbstractQueries;
 using MVVM_Lb4.Domain.Models;
+using MVVM_Lb4.Json.Commands.Abstract;
 using Newtonsoft.Json;
 
 namespace MVVM_Lb4.EF.Queries;
 
-public class GetAllStudentsInGroupQueryJson : IGetCollectionQuery<Student>
+public class GetAllStudentsInGroupQueryJson : JsonCommandBase, IGetCollectionQuery<Student>
 {
     public async Task<List<Student>> Execute(object? param = null)
     {
-        if (param is Group)
-        {
-            string? json = File.ReadAllText("students.json");
-            if (json is null)
-            {
-                return new List<Student>();
-            }
+        await CreateFilesIfNotExistsAsync();
 
-            return JsonConvert.DeserializeObject<List<Student>>(json).Where(s => s.Group.Equals(param as Group)).ToList();
-        }
-        else throw new ArgumentException("Invalid argument type");
+        if (param is null || param is not Group) throw new ArgumentException("Invalid argument type");
+        
+        Group receivedGroup = param as Group;
+
+        string? json = await File.ReadAllTextAsync(StudentFileName);
+
+        return JsonConvert.DeserializeObject<List<Student>>(json)!
+            .Where(s => s.GroupId.Equals(receivedGroup!.GroupId)).ToList();
     }
 }

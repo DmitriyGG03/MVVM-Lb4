@@ -88,9 +88,6 @@ namespace MVVM_Lb4
             using(ApplicationDbContext context = groupsDbContextFactory.Create())
             {
                 context.Database.Migrate();
-
-                File.Create("groups.json");
-                File.Create("students.json");
             }
 
             MainWindow = _host.Services.GetRequiredService<MainWindow>();

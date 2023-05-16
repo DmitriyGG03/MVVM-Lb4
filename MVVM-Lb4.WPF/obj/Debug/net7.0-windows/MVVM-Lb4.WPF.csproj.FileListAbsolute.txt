@@ -107,3 +107,5 @@ C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\obj\Debug\net7
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\bin\Debug\net7.0-windows\appsettings.json
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\obj\Debug\net7.0-windows\Views\DialogWindows\ConfirmOperationWindow.baml
 C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\obj\Debug\net7.0-windows\Views\DialogWindows\ConfirmOperationWindow.g.cs
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\bin\Debug\net7.0-windows\MVVM-Lb4.Json.dll
+C:\Users\Dimchik\source\repos\RiderProjects\MVVM-Lb4\MVVM-Lb4.WPF\bin\Debug\net7.0-windows\MVVM-Lb4.Json.pdb

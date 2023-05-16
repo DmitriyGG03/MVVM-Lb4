@@ -1,16 +1,28 @@
+using System.Data;
 using MVVM_Lb4.Domain.AbstractCommands;
 using MVVM_Lb4.Domain.Models;
+using MVVM_Lb4.Json.Commands.Abstract;
 using Newtonsoft.Json;
 
 namespace MVVM_Lb4.Json.Commands.AddCommands;
 
-public class AddGroupCommandJson : IAddCommand<Group>
+public class AddGroupCommandJson : JsonCommandBase, IAddCommand<Group>
 {
     public async Task Execute(Group group)
     {
-        var json = File.ReadAllText("groups.json");
-        var groups = JsonConvert.DeserializeObject<List<Group>>(json);
-        groups.Add(group);
-        File.WriteAllText("groups.json", JsonConvert.SerializeObject(groups));
+        await CreateFilesIfNotExistsAsync();
+        
+        var json = await File.ReadAllTextAsync(GroupFileName);
+        
+        List<Group> groups = JsonConvert.DeserializeObject<List<Group>>(json)!;
+        
+        //If GroupId have only zeros create new guid
+        if (group.GroupId.Equals(Guid.Empty))
+        {
+            group.GroupId = Guid.NewGuid();
+        }
+        
+        groups?.Add(group);
+        await File.WriteAllTextAsync(GroupFileName, JsonConvert.SerializeObject(groups));
     }
 }
